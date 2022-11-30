@@ -1,19 +1,19 @@
 <OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
-<OMA><ns0:OMS cd="logic1" name="equivalent" />
-     <OMA><ns0:OMS cd="relation3" name="is_reflexive" />
-          <OMV name="S" />    <ns0:OMV name="R" />
+<OMA><OMS cd="logic1" name="equivalent" />
+     <OMA><OMS cd="relation3" name="is_reflexive" />
+          <OMV name="S" />    <OMV name="R" />
      </OMA>
-     <OMBIND><ns0:OMS cd="quant1" name="forall" />
-          <OMBVAR> <ns0:OMV name="a" />
+     <OMBIND><OMS cd="quant1" name="forall" />
+          <OMBVAR> <OMV name="a" />
           </OMBVAR>
-          <OMA><ns0:OMS cd="logic1" name="implies" />
-               <OMA><ns0:OMS cd="set1" name="in" />
+          <OMA><OMS cd="logic1" name="implies" />
+               <OMA><OMS cd="set1" name="in" />
                     <OMV name="a" />
                     <OMV name="S" />
               </OMA>
-              <OMA><ns0:OMS cd="set1" name="set" />
-                   <OMA><ns0:OMS cd="list1" name="list" />
-                        <OMV name="a" />  <ns0:OMV name="a" />
+              <OMA><OMS cd="set1" name="set" />
+                   <OMA><OMS cd="list1" name="list" />
+                        <OMV name="a" />  <OMV name="a" />
                    </OMA>
                    <OMV name="R" />
               </OMA>

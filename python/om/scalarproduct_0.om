@@ -16,22 +16,22 @@
 	    <OMS cd="arith1" name="power" />
 	    <OMA>
 	      <OMS cd="linalg1" name="vector_selector" />
-	      <OMI> 1 </ns0:OMI>
+	      <OMI> 1 </OMI>
 	      <OMV name="a" />
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	  <OMA>
 	    <OMS cd="arith1" name="power" />
 	    <OMA>
 	      <OMS cd="linalg1" name="vector_selector" />
-	      <OMI> 2 </ns0:OMI>
+	      <OMI> 2 </OMI>
 	      <OMV name="a" />
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	</OMA>
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
       </OMA>
       <OMA>
         <OMS cd="arith1" name="root" />
@@ -41,22 +41,22 @@
 	    <OMS cd="arith1" name="power" />
 	    <OMA>
 	      <OMS cd="linalg1" name="vector_selector" />
-	      <OMI> 1 </ns0:OMI>
+	      <OMI> 1 </OMI>
 	      <OMV name="b" />
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	  <OMA>
 	    <OMS cd="arith1" name="power" />
 	    <OMA>
 	      <OMS cd="linalg1" name="vector_selector" />
-	      <OMI> 2 </ns0:OMI>
+	      <OMI> 2 </OMI>
 	      <OMV name="b" />
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	</OMA>
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
       </OMA>
       <OMA>
         <OMS cd="transc1" name="cos" />
@@ -70,12 +70,12 @@
 	        <OMS cd="arith1" name="divide" />
 		<OMA>
 		  <OMS cd="linalg1" name="vector_selector" />
-		  <OMI> 2 </ns0:OMI>
+		  <OMI> 2 </OMI>
 		  <OMV name="a" />
 		</OMA>
 		<OMA>
 		  <OMS cd="linalg1" name="vector_selector" />
-		  <OMI> 1 </ns0:OMI>
+		  <OMI> 1 </OMI>
 		  <OMV name="a" />
 		</OMA>
 	      </OMA>
@@ -86,12 +86,12 @@
 	        <OMS cd="arith1" name="divide" />
 		<OMA>
 		  <OMS cd="linalg1" name="vector_selector" />
-		  <OMI> 2 </ns0:OMI>
+		  <OMI> 2 </OMI>
 		  <OMV name="b" />
 		</OMA>
 		<OMA>
 		  <OMS cd="linalg1" name="vector_selector" />
-		  <OMI> 1 </ns0:OMI>
+		  <OMI> 1 </OMI>
 		  <OMV name="b" />
 		</OMA>
 	      </OMA>

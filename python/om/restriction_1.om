@@ -1,8 +1,8 @@
 <OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
-  <OMA><ns0:OMS cd="relation1" name="eq" />
-    <OMA><ns0:OMS cd="fns1" name="restriction" />
+  <OMA><OMS cd="relation1" name="eq" />
+    <OMA><OMS cd="fns1" name="restriction" />
       <OMV name="f" />
-      <OMA><ns0:OMS cd="fns1" name="domain" />
+      <OMA><OMS cd="fns1" name="domain" />
         <OMV name="f" />
       </OMA>
     </OMA>

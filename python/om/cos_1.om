@@ -5,7 +5,7 @@
       <OMS cd="transc1" name="cos" />
       <OMA>
         <OMS cd="arith1" name="times" />
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
 	<OMV name="A" />
       </OMA>
     </OMA>
@@ -17,7 +17,7 @@
 	  <OMS cd="transc1" name="cos" />
 	  <OMV name="A" />
 	</OMA>
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
       </OMA>
       <OMA>
         <OMS cd="arith1" name="power" />
@@ -25,7 +25,7 @@
 	  <OMS cd="transc1" name="sin" />
 	  <OMV name="A" />
 	</OMA>
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
       </OMA>
     </OMA>
   </OMA>

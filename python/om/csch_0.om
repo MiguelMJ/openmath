@@ -2,7 +2,7 @@
 <OMA>
   <OMS cd="relation1" name="eq" />
   <OMA>
-    <OMS cd="transc1" name="csch" /><ns0:OMV name="A" />
+    <OMS cd="transc1" name="csch" /><OMV name="A" />
   </OMA>
   <OMA>
     <OMS cd="arith1" name="divide" />

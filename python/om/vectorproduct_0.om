@@ -14,12 +14,12 @@
 	  <OMS cd="arith1" name="times" />
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	    <OMV name="A" />
 	  </OMA>
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 3 </ns0:OMI>
+	    <OMI> 3 </OMI>
 	    <OMV name="B" />
 	  </OMA>
 	</OMA>
@@ -27,41 +27,12 @@
 	  <OMS cd="arith1" name="times" />
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 3 </ns0:OMI>
+	    <OMI> 3 </OMI>
 	    <OMV name="A" />
 	  </OMA>
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 2 </ns0:OMI>
-	    <OMV name="B" />
-	  </OMA>
-	</OMA>
-      </OMA>
-      <OMA>
-        <OMS cd="arith1" name="minus" />
-	<OMA>
-	  <OMS cd="arith1" name="times" />
-	  <OMA>
-	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 3 </ns0:OMI>
-	    <OMV name="A" />
-	  </OMA>
-	  <OMA>
-	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 1 </ns0:OMI>
-	    <OMV name="B" />
-	  </OMA>
-	</OMA>
-	<OMA>
-	  <OMS cd="arith1" name="times" />
-	  <OMA>
-	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 1 </ns0:OMI>
-	    <OMV name="A" />
-	  </OMA>
-	  <OMA>
-	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 3 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	    <OMV name="B" />
 	  </OMA>
 	</OMA>
@@ -72,12 +43,12 @@
 	  <OMS cd="arith1" name="times" />
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 1 </ns0:OMI>
+	    <OMI> 3 </OMI>
 	    <OMV name="A" />
 	  </OMA>
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 1 </OMI>
 	    <OMV name="B" />
 	  </OMA>
 	</OMA>
@@ -85,12 +56,41 @@
 	  <OMS cd="arith1" name="times" />
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 1 </OMI>
 	    <OMV name="A" />
 	  </OMA>
 	  <OMA>
 	    <OMS cd="linalg1" name="vector_selector" />
-	    <OMI> 1 </ns0:OMI>
+	    <OMI> 3 </OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="minus" />
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </OMI>
 	    <OMV name="B" />
 	  </OMA>
 	</OMA>

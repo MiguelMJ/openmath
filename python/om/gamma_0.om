@@ -27,7 +27,7 @@
             </OMBVAR>
 	    <OMA>
               <OMS cd="arith1" name="divide" />
-              <OMI>1</ns0:OMI>
+              <OMI>1</OMI>
               <OMV name="j" />
 	    </OMA>
 	  </OMBIND>

@@ -13,7 +13,7 @@
         <OMA>
           <OMS cd="arith1" name="power" />
           <OMV name="x" />
-          <OMI>0</ns0:OMI>
+          <OMI>0</OMI>
         </OMA>
         <OMS cd="alg1" name="one" />
       </OMA>
@@ -33,7 +33,7 @@
             <OMA>
               <OMS cd="arith1" name="minus" />
               <OMV name="n" />
-              <OMI>1</ns0:OMI>
+              <OMI>1</OMI>
             </OMA>
           </OMA>
         </OMA>

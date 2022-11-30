@@ -7,7 +7,7 @@
     </OMA>
     <OMA>
       <OMS cd="arith1" name="times" />
-      <OMI> 2 </ns0:OMI>
+      <OMI> 2 </OMI>
       <OMA>
         <OMS cd="transc1" name="ln" />
 	<OMA>
@@ -21,9 +21,9 @@
 		<OMV name="z" />
 		<OMS cd="alg1" name="one" />
 	      </OMA>
-	      <OMI> 2 </ns0:OMI>
+	      <OMI> 2 </OMI>
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	  <OMA>
 	    <OMS cd="arith1" name="root" />
@@ -34,9 +34,9 @@
 		<OMV name="z" />
 		<OMS cd="alg1" name="one" />
 	      </OMA>
-	      <OMI> 2 </ns0:OMI>
+	      <OMI> 2 </OMI>
 	    </OMA>
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	</OMA>
       </OMA>

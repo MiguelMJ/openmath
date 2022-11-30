@@ -1,15 +1,15 @@
 <OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
-<OMA><ns0:OMS cd="relation1" name="eq" />
-     <OMA><ns0:OMS cd="relation3" name="class" />
-          <OMV name="S" />    <ns0:OMV name="R" /> <ns0:OMV name="a" />
+<OMA><OMS cd="relation1" name="eq" />
+     <OMA><OMS cd="relation3" name="class" />
+          <OMV name="S" />    <OMV name="R" /> <OMV name="a" />
      </OMA>
-     <OMA><ns0:OMS cd="set1" name="suchthat" />
+     <OMA><OMS cd="set1" name="suchthat" />
           <OMV name="S" />
-          <OMBIND><ns0:OMS cd="fns1" name="lambda" />
-               <OMBVAR> <ns0:OMV name="b" /></ns0:OMBVAR>
-               <OMA><ns0:OMS cd="set1" name="in" />
-                    <OMA><ns0:OMS cd="list1" name="list" />
-                         <OMV name="a" />  <ns0:OMV name="b" />
+          <OMBIND><OMS cd="fns1" name="lambda" />
+               <OMBVAR> <OMV name="b" /></OMBVAR>
+               <OMA><OMS cd="set1" name="in" />
+                    <OMA><OMS cd="list1" name="list" />
+                         <OMV name="a" />  <OMV name="b" />
                     </OMA>
                     <OMV name="R" />
                </OMA>

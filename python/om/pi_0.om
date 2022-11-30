@@ -4,7 +4,7 @@
   <OMS cd="nums1" name="pi" />
   <OMA>
     <OMS cd="arith1" name="times" />
-    <OMI>4</ns0:OMI>
+    <OMI>4</OMI>
     <OMA>
       <OMS cd="arith1" name="sum" />
       <OMA>
@@ -26,7 +26,7 @@
 	      <OMS cd="arith1" name="plus" />
 	      <OMA>
 	        <OMS cd="arith1" name="times" />
-	        <OMI>4</ns0:OMI>
+	        <OMI>4</OMI>
 	        <OMV name="j" />
 	      </OMA>
 	      <OMS cd="alg1" name="one" />
@@ -39,10 +39,10 @@
 	      <OMS cd="arith1" name="plus" />
 	      <OMA>
 	        <OMS cd="arith1" name="times" />
-  	        <OMI>4</ns0:OMI>
+  	        <OMI>4</OMI>
 	        <OMV name="j" />
 	      </OMA>
-	      <OMI>3</ns0:OMI>
+	      <OMI>3</OMI>
 	    </OMA>
 	  </OMA>
         </OMA>

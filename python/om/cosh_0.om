@@ -10,7 +10,7 @@
     <OMA>
       <OMS cd="nums1" name="rational" />
       <OMS cd="alg1" name="one" />
-      <OMI> 2 </ns0:OMI>
+      <OMI> 2 </OMI>
     </OMA>
     <OMA>
       <OMS cd="arith1" name="plus" />

@@ -31,7 +31,7 @@
         </OMA>
         <OMA>
           <OMS name="times" cd="arith1" />
-          <OMI>2</ns0:OMI>
+          <OMI>2</OMI>
           <OMS name="i" cd="nums1" />
         </OMA>
       </OMA>

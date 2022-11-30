@@ -23,10 +23,10 @@
                 <OMA>
                   <OMS name="power" cd="arith1" />
                   <OMV name="z" />
-                  <OMI> 2 </ns0:OMI>
+                  <OMI> 2 </OMI>
                 </OMA>
               </OMA>
-              <OMI> 2 </ns0:OMI>
+              <OMI> 2 </OMI>
             </OMA>
             <OMA>
               <OMS name="times" cd="arith1" />

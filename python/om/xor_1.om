@@ -1,12 +1,12 @@
-<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><ns0:OMBIND><ns0:OMS cd="quant1" name="forall" />
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd"><OMBIND><OMS cd="quant1" name="forall" />
   <OMBVAR>
     <OMV name="x" />
   </OMBVAR>
   <OMA>
     <OMS cd="relation1" name="eq" />
-    <OMA><ns0:OMS cd="logic1" name="xor" />
+    <OMA><OMS cd="logic1" name="xor" />
       <OMV name="x" />
-      <OMA><ns0:OMS cd="logic1" name="not" />
+      <OMA><OMS cd="logic1" name="not" />
         <OMV name="x" />
       </OMA>
     </OMA>

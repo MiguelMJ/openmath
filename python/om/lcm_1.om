@@ -32,7 +32,7 @@
           <OMA>
             <OMS cd="relation1" name="gt" />
               <OMV name="c" />
-              <OMI>0</ns0:OMI>
+              <OMI>0</OMI>
           </OMA>
           <OMA>
             <OMS cd="integer1" name="factorof" />

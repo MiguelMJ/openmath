@@ -9,7 +9,7 @@
         <OMS cd="arith1" name="product" />
           <OMA>
             <OMS cd="interval1" name="integer_interval" />
-            <OMI> 1 </ns0:OMI>
+            <OMI> 1 </OMI>
             <OMV name="n" />
           </OMA>
         <OMBIND>

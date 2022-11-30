@@ -11,15 +11,15 @@
         <OMS cd="linalg1" name="vectorproduct" />
 	<OMA>
 	  <OMS cd="linalg2" name="vector" />
-	  <OMI> 1 </ns0:OMI>
-	  <OMI> 0 </ns0:OMI>
-	  <OMI> 0 </ns0:OMI>
+	  <OMI> 1 </OMI>
+	  <OMI> 0 </OMI>
+	  <OMI> 0 </OMI>
 	</OMA>
 	<OMA>
 	  <OMS cd="calculus1" name="partialdiff" />
 	  <OMA>
 	    <OMS cd="list1" name="list" />
-	    <OMI> 1 </ns0:OMI>
+	    <OMI> 1 </OMI>
 	  </OMA>
 	  <OMV name="F" />
 	</OMA>
@@ -28,15 +28,15 @@
         <OMS cd="linalg1" name="vectorproduct" />
 	<OMA>
 	  <OMS cd="linalg2" name="vector" />
-	  <OMI> 0 </ns0:OMI>
-	  <OMI> 1 </ns0:OMI>
-	  <OMI> 0 </ns0:OMI>
+	  <OMI> 0 </OMI>
+	  <OMI> 1 </OMI>
+	  <OMI> 0 </OMI>
 	</OMA>
 	<OMA>
 	  <OMS cd="calculus1" name="partialdiff" />
 	  <OMA>
 	    <OMS cd="list1" name="list" />
-	    <OMI> 2 </ns0:OMI>
+	    <OMI> 2 </OMI>
 	  </OMA>
 	  <OMV name="F" />
 	</OMA>
@@ -45,15 +45,15 @@
         <OMS cd="linalg1" name="vectorproduct" />
 	<OMA>
 	  <OMS cd="linalg2" name="vector" />
-	  <OMI> 0 </ns0:OMI>
-	  <OMI> 0 </ns0:OMI>
-	  <OMI> 1 </ns0:OMI>
+	  <OMI> 0 </OMI>
+	  <OMI> 0 </OMI>
+	  <OMI> 1 </OMI>
 	</OMA>
 	<OMA>
 	  <OMS cd="calculus1" name="partialdiff" />
 	  <OMA>
 	    <OMS cd="list1" name="list" />
-	    <OMI> 3 </ns0:OMI>
+	    <OMI> 3 </OMI>
 	  </OMA>
 	  <OMV name="F" />
 	</OMA>

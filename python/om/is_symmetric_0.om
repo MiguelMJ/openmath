@@ -1,31 +1,31 @@
 <OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
-<OMA><ns0:OMS cd="logic1" name="equivalent" />
-     <OMA><ns0:OMS cd="relation3" name="is_symmetric" />
-          <OMV name="S" />    <ns0:OMV name="R" />
+<OMA><OMS cd="logic1" name="equivalent" />
+     <OMA><OMS cd="relation3" name="is_symmetric" />
+          <OMV name="S" />    <OMV name="R" />
      </OMA>
-     <OMBIND><ns0:OMS cd="quant1" name="forall" />
-          <OMBVAR> <ns0:OMV name="a" /> <ns0:OMV name="b" />
+     <OMBIND><OMS cd="quant1" name="forall" />
+          <OMBVAR> <OMV name="a" /> <OMV name="b" />
           </OMBVAR>
-          <OMA><ns0:OMS cd="logic1" name="implies" />
-               <OMA><ns0:OMS cd="logic1" name="and" />
-                    <OMA><ns0:OMS cd="set1" name="in" />
+          <OMA><OMS cd="logic1" name="implies" />
+               <OMA><OMS cd="logic1" name="and" />
+                    <OMA><OMS cd="set1" name="in" />
                          <OMV name="a" />
                          <OMV name="S" />
                     </OMA>
-                    <OMA><ns0:OMS cd="set1" name="in" />
+                    <OMA><OMS cd="set1" name="in" />
                          <OMV name="b" />
                          <OMV name="S" />
                     </OMA>
-                    <OMA><ns0:OMS cd="set1" name="in" />
-                         <OMA><ns0:OMS cd="list1" name="list" />
-                              <OMV name="a" />  <ns0:OMV name="b" />
+                    <OMA><OMS cd="set1" name="in" />
+                         <OMA><OMS cd="list1" name="list" />
+                              <OMV name="a" />  <OMV name="b" />
                          </OMA>
                          <OMV name="R" />
                     </OMA>
                </OMA>
-               <OMA><ns0:OMS cd="set1" name="in" />
-                    <OMA><ns0:OMS cd="list1" name="list" />
-                         <OMV name="b" />  <ns0:OMV name="a" />
+               <OMA><OMS cd="set1" name="in" />
+                    <OMA><OMS cd="list1" name="list" />
+                         <OMV name="b" />  <OMV name="a" />
                     </OMA>
                     <OMV name="R" />
                </OMA>

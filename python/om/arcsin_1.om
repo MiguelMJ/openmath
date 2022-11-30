@@ -11,13 +11,13 @@
 	<OMA>
 	  <OMS cd="arith1" name="divide" />
 	  <OMS cd="nums1" name="pi" />
-	  <OMI> 2 </ns0:OMI>
+	  <OMI> 2 </OMI>
 	</OMA>
       </OMA>
       <OMA>
         <OMS cd="arith1" name="divide" />
 	<OMS cd="nums1" name="pi" />
-	<OMI> 2 </ns0:OMI>
+	<OMI> 2 </OMI>
       </OMA>
     </OMA>
   </OMA>
