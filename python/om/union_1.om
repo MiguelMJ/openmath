@@ -1,0 +1,35 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS cd="quant1" name="forall" />
+    <OMBVAR>
+      <OMV name="A" />
+      <OMV name="B" />
+      <OMV name="C" />
+    </OMBVAR>
+    <OMA>
+      <OMS cd="relation1" name="eq" />
+      <OMA>
+        <OMS cd="set1" name="union" />
+        <OMV name="A" />
+        <OMA>
+          <OMS cd="set1" name="intersect" />
+          <OMV name="B" />
+          <OMV name="C" />
+        </OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="set1" name="intersect" />
+        <OMA>
+          <OMS cd="set1" name="union" />
+          <OMV name="A" />
+          <OMV name="B" />
+        </OMA>
+        <OMA>
+          <OMS cd="set1" name="union" />
+          <OMV name="A" />
+          <OMV name="C" />
+        </OMA>
+      </OMA>
+    </OMA>    
+  </OMBIND>
+</OMOBJ>

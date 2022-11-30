@@ -1,0 +1,14 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
+<OMA><ns0:OMS cd="logic1" name="equivalent" />
+     <OMA><ns0:OMS cd="set1" name="subset" />
+          <OMV name="R" />
+          <OMA><ns0:OMS cd="set1" name="cartesian_product" />
+               <OMV name="S" />
+          </OMA>
+     </OMA>
+     <OMA><ns0:OMS cd="relation3" name="is_relation" />
+          <OMV name="S" />
+          <OMV name="R" />
+     </OMA>
+</OMA>
+</OMOBJ>

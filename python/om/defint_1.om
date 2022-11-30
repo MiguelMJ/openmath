@@ -1,0 +1,86 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS cd="quant1" name="forall" />
+    <OMBVAR>
+      <OMV name="a" />
+      <OMV name="b" />
+      <OMV name="c" />
+    </OMBVAR>
+    <OMA>
+      <OMS cd="logic1" name="implies" />
+      <OMA>
+        <OMS cd="logic1" name="and" />
+        <OMA>
+          <OMS cd="relation1" name="lt" />
+          <OMV name="a" />
+  	<OMV name="b" />
+        </OMA>
+        <OMA>
+          <OMS cd="relation1" name="lt" />
+	  <OMV name="b" />
+	  <OMV name="c" />
+        </OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+	<OMA>
+	  <OMS cd="calculus1" name="defint" />
+	  <OMA>
+	    <OMS cd="interval1" name="ordered_interval" />
+	    <OMV name="a" />
+	    <OMV name="c" />
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda" />
+	    <OMBVAR>
+	      <OMV name="x" />
+	    </OMBVAR>
+	    <OMA>
+	      <OMV name="f" />
+	      <OMV name="x" />
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="plus" />
+	  <OMA>
+	    <OMS cd="calculus1" name="defint" />
+	    <OMA>
+	      <OMS cd="interval1" name="ordered_interval" />
+	      <OMV name="a" />
+	      <OMV name="b" />
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda" />
+	      <OMBVAR>
+	        <OMV name="x" />
+	      </OMBVAR>
+	      <OMA>
+	        <OMV name="f" />
+	        <OMV name="x" />
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="calculus1" name="defint" />
+	    <OMA>
+	      <OMS cd="interval1" name="ordered_interval" />
+	      <OMV name="b" />
+	      <OMV name="c" />
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda" />
+	      <OMBVAR>
+	        <OMV name="x" />
+	      </OMBVAR>
+	      <OMA>
+	        <OMV name="f" />
+	        <OMV name="x" />
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>

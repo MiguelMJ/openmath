@@ -1,0 +1,32 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="transc1" name="cos" />
+      <OMA>
+        <OMS cd="arith1" name="times" />
+	<OMI> 2 </ns0:OMI>
+	<OMV name="A" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="minus" />
+      <OMA>
+        <OMS cd="arith1" name="power" />
+	<OMA>
+	  <OMS cd="transc1" name="cos" />
+	  <OMV name="A" />
+	</OMA>
+	<OMI> 2 </ns0:OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="power" />
+	<OMA>
+	  <OMS cd="transc1" name="sin" />
+	  <OMV name="A" />
+	</OMA>
+	<OMI> 2 </ns0:OMI>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

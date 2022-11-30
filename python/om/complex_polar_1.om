@@ -1,0 +1,54 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMBIND>
+  <OMS cd="quant1" name="forall" />
+  <OMBVAR>
+    <OMV name="x" />
+    <OMV name="y" />
+    <OMV name="r" />
+    <OMV name="a" />
+  </OMBVAR>
+  <OMA>
+    <OMS cd="logic1" name="implies" />
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="arith1" name="times" />
+	  <OMV name="r" />
+	  <OMA>
+	    <OMS cd="transc1" name="sin" />
+	    <OMV name="a" />
+	  </OMA>
+        </OMA>
+	<OMV name="y" />
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="arith1" name="times" />
+	  <OMV name="r" />
+	  <OMA>
+	    <OMS cd="transc1" name="cos" />
+	    <OMV name="a" />
+	  </OMA>
+        </OMA>
+	<OMV name="x" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="eq" />
+      <OMA>
+        <OMS cd="complex1" name="complex_polar" />
+        <OMV name="r" />
+        <OMV name="a" />
+      </OMA>
+      <OMA>
+        <OMS cd="complex1" name="complex_cartesian" />
+        <OMV name="x" />
+        <OMV name="y" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMBIND>
+</OMOBJ>

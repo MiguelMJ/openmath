@@ -1,0 +1,45 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
+<OMA><ns0:OMS cd="logic1" name="equivalent" />
+     <OMA><ns0:OMS cd="relation3" name="is_transitive" />
+          <OMV name="S" />    <ns0:OMV name="R" />
+     </OMA>
+     <OMBIND><ns0:OMS cd="quant1" name="forall" />
+          <OMBVAR> <ns0:OMV name="a" /> <ns0:OMV name="b" /><ns0:OMV name="c" />
+          </OMBVAR>
+          <OMA><ns0:OMS cd="logic1" name="implies" />
+               <OMA><ns0:OMS cd="logic1" name="and" />
+                    <OMA><ns0:OMS cd="set1" name="in" />
+                         <OMV name="a" />
+                         <OMV name="S" />
+                    </OMA>
+                    <OMA><ns0:OMS cd="set1" name="in" />
+                         <OMV name="b" />
+                         <OMV name="S" />
+                    </OMA>
+                    <OMA><ns0:OMS cd="set1" name="in" />
+                         <OMV name="c" />
+                         <OMV name="S" />
+                    </OMA>
+                    <OMA><ns0:OMS cd="set1" name="in" />
+                         <OMA><ns0:OMS cd="list1" name="list" />
+                              <OMV name="a" />  <ns0:OMV name="b" />
+                         </OMA>
+                         <OMV name="R" />
+                    </OMA>
+                    <OMA><ns0:OMS cd="set1" name="in" />
+                         <OMA><ns0:OMS cd="list1" name="list" />
+                              <OMV name="b" />  <ns0:OMV name="c" />
+                         </OMA>
+                         <OMV name="R" />
+                    </OMA>
+               </OMA>
+               <OMA><ns0:OMS cd="set1" name="in" />
+                    <OMA><ns0:OMS cd="list1" name="list" />
+                         <OMV name="a" />  <ns0:OMV name="c" />
+                    </OMA>
+                    <OMV name="R" />
+               </OMA>
+          </OMA>
+    </OMBIND>
+</OMA>
+</OMOBJ>

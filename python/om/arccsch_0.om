@@ -1,0 +1,37 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="transc1" name="arccsch" />
+      <OMV name="z" />
+    </OMA>
+    <OMA>
+      <OMS cd="transc1" name="ln" />
+      <OMA>
+        <OMS cd="arith1" name="plus" />
+	<OMA>
+	  <OMS cd="arith1" name="divide" />
+	  <OMS cd="alg1" name="one" />
+	  <OMV name="z" />
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="root" />
+	  <OMA>
+	    <OMS cd="arith1" name="plus" />
+	    <OMS cd="alg1" name="one" />
+	    <OMA>
+	      <OMS cd="arith1" name="power" />
+	      <OMA>
+	        <OMS cd="arith1" name="divide" />
+		<OMS cd="alg1" name="one" />
+		<OMV name="z" />
+	      </OMA>
+	      <OMI> 2 </ns0:OMI>
+	    </OMA>
+	  </OMA>
+	  <OMI> 2 </ns0:OMI>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

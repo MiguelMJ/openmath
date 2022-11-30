@@ -1,0 +1,22 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS name="eq" cd="relation1" />
+    <OMA>
+      <OMS name="nthdiff" cd="calculus1" />
+      <OMA>
+        <OMS name="plus" cd="arith1" />
+        <OMV name="n" />
+        <OMS name="one" cd="alg1" />
+      </OMA>
+      <OMV name="f" />
+    </OMA>
+    <OMA>
+      <OMS name="diff" cd="calculus1" />
+      <OMA>
+        <OMS name="nthdiff" cd="calculus1" />
+        <OMV name="n" />
+        <OMV name="f" />
+      </OMA>
+    </OMA>
+  </OMA>
+  </OMOBJ>

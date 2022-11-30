@@ -1,0 +1,46 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMBIND>
+  <OMS cd="quant1" name="forall" />
+  <OMBVAR>
+    <OMV name="x" />
+  </OMBVAR>
+  <OMA>
+    <OMS cd="logic1" name="implies" />
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="set1" name="in" />
+	<OMV name="a" />
+	<OMS cd="setname1" name="R" />
+      </OMA>
+      <OMA>
+        <OMS cd="set1" name="in" />
+	<OMV name="k" />
+	<OMS cd="setname1" name="Z" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="eq" />
+      <OMA>
+        <OMS cd="complex1" name="complex_polar" />
+	<OMV name="x" />
+	<OMV name="a" />
+      </OMA>
+      <OMA>
+        <OMS cd="complex1" name="complex_polar" />
+	<OMV name="x" />
+	<OMA>
+	  <OMS cd="arith1" name="plus" />
+	  <OMV name="a" />
+	  <OMA>
+	    <OMS cd="arith1" name="times" />
+	    <OMI> 2 </ns0:OMI>
+	    <OMS cd="nums1" name="pi" />
+	    <OMV name="k" />
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMBIND>
+</OMOBJ>

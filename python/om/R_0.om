@@ -1,0 +1,106 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="logic1" name="implies" />
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="set1" name="subset" />
+	<OMV name="S" />
+	<OMS cd="setname1" name="R" />
+      </OMA>
+      <OMBIND>
+        <OMS cd="quant1" name="exists" />
+	<OMBVAR>
+	  <OMV name="y" />
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and" />
+	  <OMA>
+	    <OMS cd="set1" name="in" />
+	    <OMV name="y" />
+	    <OMS cd="setname1" name="R" />
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="forall" />
+	    <OMBVAR>
+	      <OMV name="x" />
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and" />
+	      <OMA>
+	        <OMS cd="set1" name="in" />
+		<OMV name="x" />
+		<OMV name="S" />
+	      </OMA>
+	      <OMA>
+	        <OMS cd="relation1" name="leq" />
+		<OMV name="x" />
+		<OMV name="y" />
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMA>
+    <OMBIND>
+      <OMS cd="quant1" name="exists" />
+      <OMBVAR>
+        <OMV name="z" />
+      </OMBVAR>
+      <OMA>
+        <OMS cd="logic1" name="and" />
+	<OMA>
+          <OMS cd="set1" name="in" />
+	  <OMV name="z" />
+	  <OMS cd="setname1" name="R" />
+	</OMA>
+	<OMBIND>
+	  <OMS cd="quant1" name="forall" />
+	  <OMBVAR>
+	    <OMV name="x" />
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies" />
+	    <OMA>
+	      <OMS cd="set1" name="in" />
+	      <OMV name="x" />
+	      <OMV name="S" />
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="leq" />
+	      <OMV name="x" />
+	      <OMV name="z" />
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+	<OMA>
+	  <OMS cd="logic1" name="implies" />
+	  <OMBIND>
+	    <OMS cd="quant1" name="forall" />
+	    <OMBVAR>
+	      <OMV name="x" />
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="implies" />
+	      <OMA>
+	        <OMS cd="set1" name="in" />
+		<OMV name="x" />
+		<OMV name="S" />
+	      </OMA>
+	      <OMA>
+	        <OMS cd="relation1" name="leq" />
+		<OMV name="x" />
+		<OMV name="w" />
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	  <OMA>
+	    <OMS cd="relation1" name="leq" />
+	    <OMV name="z" />
+	    <OMV name="w" />
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

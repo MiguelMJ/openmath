@@ -1,0 +1,50 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS name="forall" cd="quant1" />
+    <OMBVAR>
+       <OMV name="z" />
+    </OMBVAR>
+    <OMA>
+      <OMS name="implies" cd="logic1" />
+      <OMA>
+        <OMS name="in" cd="set1" />
+        <OMV name="z" />
+        <OMS name="Q" cd="setname1" />
+      </OMA>
+      <OMBIND>
+        <OMS name="exists" cd="quant1" />
+        <OMBVAR>
+          <OMV name="p" />
+          <OMV name="q" />
+        </OMBVAR>
+        <OMA>
+          <OMS name="and" cd="logic1" />
+          <OMA>
+            <OMS name="in" cd="set1" />
+            <OMV name="p" />
+            <OMS name="Z" cd="setname1" />
+          </OMA>
+          <OMA>
+            <OMS name="in" cd="set1" />
+            <OMV name="q" />
+            <OMS name="Z" cd="setname1" />
+          </OMA>
+          <OMA>
+            <OMS name="geq" cd="relation1" />
+            <OMV name="q" />
+            <OMS name="one" cd="alg1" />
+          </OMA>
+          <OMA>
+            <OMS name="eq" cd="relation1" />
+            <OMV name="z" />
+            <OMA>
+              <OMS name="divide" cd="arith1" />
+              <OMV name="p" />
+              <OMV name="q" />
+            </OMA>
+          </OMA>
+        </OMA>
+      </OMBIND>
+     </OMA>
+  </OMBIND>
+</OMOBJ>

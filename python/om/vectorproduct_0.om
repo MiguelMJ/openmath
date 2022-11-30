@@ -1,0 +1,100 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="linalg1" name="vectorproduct" />
+      <OMV name="A" />
+      <OMV name="B" />
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="arith1" name="minus" />
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 3 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 3 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="minus" />
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 3 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 3 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="minus" />
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times" />
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 2 </ns0:OMI>
+	    <OMV name="A" />
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector" />
+	    <OMI> 1 </ns0:OMI>
+	    <OMV name="B" />
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

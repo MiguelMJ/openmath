@@ -1,0 +1,15 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="set1" name="subset" />
+    <OMA>
+      <OMS name="interval_oo" cd="interval1" />
+      <OMV name="a" />
+      <OMV name="b" />
+    </OMA>
+    <OMA>
+      <OMS name="interval" cd="interval1" />
+      <OMV name="a" />
+      <OMV name="b" />
+    </OMA>
+  </OMA>
+</OMOBJ>

@@ -1,0 +1,63 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMA>
+        <OMS cd="calculus1" name="diff" />
+        <OMBIND>
+          <OMS cd="fns1" name="lambda" />
+          <OMBVAR>
+            <OMV name="y" />
+          </OMBVAR>
+          <OMA>
+            <OMS cd="arith1" name="plus" />
+            <OMA>
+              <OMV name="a" />
+              <OMV name="y" />
+            </OMA>
+            <OMA>
+              <OMV name="b" />
+              <OMV name="y" />
+            </OMA>
+          </OMA>
+        </OMBIND>
+      </OMA>
+      <OMV name="x" />
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="plus" />
+      <OMA>
+        <OMA>
+          <OMS cd="calculus1" name="diff" />
+          <OMBIND>
+            <OMS cd="fns1" name="lambda" />
+            <OMBVAR>
+              <OMV name="y" />
+            </OMBVAR>
+            <OMA>
+              <OMV name="a" />
+              <OMV name="y" />
+            </OMA>
+          </OMBIND>
+        </OMA>
+        <OMV name="x" />
+      </OMA>
+      <OMA>
+        <OMA>
+          <OMS cd="calculus1" name="diff" />
+          <OMBIND>
+            <OMS cd="fns1" name="lambda" />
+            <OMBVAR>
+              <OMV name="y" />
+            </OMBVAR>
+            <OMA>
+              <OMV name="b" />
+              <OMV name="y" />
+            </OMA>
+          </OMBIND>
+        </OMA>
+        <OMV name="x" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

@@ -1,0 +1,30 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+    <OMA>
+      <OMS name="and" cd="logic1" />
+      <OMA>
+        <OMS name="lt" cd="relation1" />
+        <OMA>
+          <OMS name="unary_minus" cd="arith1" />
+          <OMS name="pi" cd="nums1" />
+        </OMA>
+        <OMA>
+          <OMS name="imaginary" cd="complex1" />
+          <OMA>
+            <OMS name="ln" cd="transc1" />
+            <OMV name="x" />
+          </OMA>
+        </OMA>
+      </OMA>
+      <OMA>
+        <OMS name="leq" cd="relation1" />
+        <OMA>
+          <OMS name="imaginary" cd="complex1" />
+          <OMA>
+            <OMS name="ln" cd="transc1" />
+            <OMV name="x" />
+          </OMA>
+        </OMA>
+        <OMS name="pi" cd="nums1" />
+      </OMA>
+    </OMA>
+  </OMOBJ>

@@ -1,0 +1,7 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="neq" />
+    <OMS cd="nums1" name="NaN" />
+    <OMS cd="nums1" name="NaN" />
+  </OMA>
+</OMOBJ>

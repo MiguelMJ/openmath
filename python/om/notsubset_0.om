@@ -1,0 +1,29 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA>
+  <OMS cd="logic1" name="implies" />
+  <OMA>
+    <OMS cd="set1" name="notsubset" />
+    <OMV name="A" />
+    <OMV name="B" />
+  </OMA>
+  <OMBIND>
+    <OMS cd="quant1" name="exists" />
+    <OMBVAR>
+      <OMV name="x" />
+    </OMBVAR>
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="set1" name="in" />
+	<OMV name="x" />
+	<OMV name="B" />
+      </OMA>
+      <OMA>
+        <OMS cd="set1" name="notin" />
+	<OMV name="x" />
+	<OMV name="A" />
+      </OMA>
+    </OMA>
+  </OMBIND>
+</OMA>
+</OMOBJ>

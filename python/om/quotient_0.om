@@ -1,0 +1,77 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+     <OMBIND>
+       <OMS cd="quant1" name="forall" />
+       <OMBVAR>
+         <OMV name="a" />
+         <OMV name="b" />
+       </OMBVAR>
+       <OMA>
+         <OMS cd="logic1" name="implies" />
+         <OMA>
+           <OMS cd="logic1" name="and" />
+           <OMA>
+             <OMS cd="set1" name="in" />
+             <OMV name="a" />
+             <OMS cd="setname1" name="Z" />
+           </OMA>
+           <OMA>
+             <OMS cd="set1" name="in" />
+             <OMV name="b" />
+             <OMS cd="setname1" name="Z" />
+           </OMA>
+         </OMA>
+         <OMA>
+	   <OMS cd="logic1" name="and" />
+	   <OMA>
+             <OMS cd="relation1" name="eq" />
+             <OMV name="a" />
+             <OMA>
+               <OMS cd="arith1" name="plus" />
+               <OMA>
+                 <OMS cd="arith1" name="times" />
+                 <OMV name="b" />
+                 <OMA>
+                   <OMS cd="integer1" name="quotient" />
+                   <OMV name="a" />
+                   <OMV name="b" />
+                 </OMA>
+               </OMA>
+               <OMA>
+                 <OMS cd="integer1" name="remainder" />
+                 <OMV name="a" />
+                 <OMV name="b" />
+               </OMA>
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="lt" />
+             <OMA>
+               <OMS cd="arith1" name="abs" />
+               <OMA>
+                 <OMS cd="integer1" name="remainder" />
+                 <OMV name="a" />
+                 <OMV name="b" />
+               </OMA>
+             </OMA>
+             <OMA>
+               <OMS cd="arith1" name="abs" />
+               <OMV name="b" />
+             </OMA>
+           </OMA>
+           <OMA>
+             <OMS cd="relation1" name="geq" />
+             <OMA>
+               <OMS cd="arith1" name="times" />
+               <OMV name="a" />
+	       <OMA>
+	         <OMS cd="integer1" name="remainder" />
+		 <OMV name="a" />
+		 <OMV name="b" />
+	       </OMA>
+             </OMA>
+             <OMS cd="alg1" name="zero" />
+           </OMA>
+         </OMA>
+       </OMA>
+     </OMBIND>
+   </OMOBJ>

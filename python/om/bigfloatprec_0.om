@@ -1,0 +1,29 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="bigfloat1" name="bigfloatprec" />
+      <OMA>
+        <OMS cd="bigfloat1" name="bigfloat" />
+        <OMV name="m" />
+        <OMV name="r" />
+        <OMV name="e" />
+      </OMA>
+      <OMV name="r" />
+      <OMA>
+        <OMS cd="rounding1" name="ceiling" />
+        <OMA>
+          <OMS cd="transc1" name="log" />
+          <OMV name="r" />
+          <OMV name="m" />
+        </OMA>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="bigfloat1" name="bigfloat" />
+      <OMV name="m" />
+      <OMV name="r" />
+      <OMV name="e" />
+    </OMA>
+  </OMA>
+</OMOBJ>

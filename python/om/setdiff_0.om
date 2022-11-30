@@ -1,0 +1,11 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="set1" name="subset" />
+    <OMA>
+      <OMS cd="set1" name="setdiff" />
+      <OMV name="A" />
+      <OMV name="B" />
+    </OMA>
+    <OMV name="A" />
+  </OMA>
+</OMOBJ>

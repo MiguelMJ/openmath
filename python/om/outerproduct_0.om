@@ -1,0 +1,28 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="linalg1" name="matrix_selector" />
+      <OMV name="i" />
+      <OMV name="j" />
+      <OMA>
+        <OMS cd="linalg1" name="outerproduct" />
+	<OMV name="a" />
+	<OMV name="b" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="times" />
+      <OMA>
+        <OMS cd="linalg1" name="vector_selector" />
+	<OMV name="i" />
+	<OMV name="a" />
+      </OMA>
+      <OMA>
+        <OMS cd="linalg1" name="vector_selector" />
+	<OMV name="j" />
+	<OMV name="b" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

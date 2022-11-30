@@ -1,0 +1,43 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="logic1" name="implies" />
+    <OMA>
+      <OMS cd="set1" name="in" />
+      <OMV name="n" />
+      <OMS cd="setname1" name="Z" />
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="arith1" name="power" />
+          <OMV name="x" />
+          <OMI>0</ns0:OMI>
+        </OMA>
+        <OMS cd="alg1" name="one" />
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="arith1" name="power" />
+          <OMV name="x" />
+          <OMV name="n" />
+        </OMA>
+        <OMA>
+          <OMS cd="arith1" name="times" />
+          <OMV name="x" />
+          <OMA>
+            <OMS cd="arith1" name="power" />
+            <OMV name="x" />
+            <OMA>
+              <OMS cd="arith1" name="minus" />
+              <OMV name="n" />
+              <OMI>1</ns0:OMI>
+            </OMA>
+          </OMA>
+        </OMA>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

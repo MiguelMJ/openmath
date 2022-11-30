@@ -1,0 +1,32 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="logic1" name="equivalent" />
+    <OMA>
+      <OMS cd="set1" name="in" />
+      <OMV name="x" />
+      <OMA>
+        <OMS name="interval_co" cd="interval1" />
+        <OMV name="a" />
+        <OMV name="b" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="logic1" name="and" />
+      <OMA>
+        <OMS cd="set1" name="in" />
+        <OMV name="x" />
+        <OMS cd="setname1" name="R" />
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="le" />
+        <OMV name="a" />
+        <OMV name="x" />
+      </OMA>
+      <OMA>
+        <OMS cd="relation1" name="lt" />
+        <OMV name="x" />
+        <OMV name="b" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

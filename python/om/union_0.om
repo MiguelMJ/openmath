@@ -1,0 +1,23 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="logic1" name="and" />
+    <OMA>
+      <OMS cd="set1" name="subset" />
+      <OMV name="A" />
+      <OMA>
+        <OMS cd="set1" name="union" />
+	<OMV name="A" />
+	<OMV name="B" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="set1" name="subset" />
+      <OMV name="B" />
+      <OMA>
+        <OMS cd="set1" name="union" />
+	<OMV name="A" />
+	<OMV name="B" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

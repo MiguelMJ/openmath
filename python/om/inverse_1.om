@@ -1,0 +1,36 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="logic1" name="implies" />
+       <OMBIND>
+        <OMS cd="quant1" name="exists" />
+	<OMBVAR>
+	  <OMV name="x" />
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq" />
+	  <OMA>
+	    <OMA>
+	      <OMS cd="fns1" name="inverse" />
+	      <OMV name="f" />
+	    </OMA>
+	    <OMV name="y" />
+	  </OMA>
+	  <OMV name="x" />
+	</OMA>
+      </OMBIND>
+    <OMA>
+      <OMS cd="relation1" name="eq" />
+      <OMA>
+        <OMV name="f" />
+	<OMA>
+	  <OMA>
+	    <OMS cd="fns1" name="inverse" />
+	    <OMV name="f" />
+	  </OMA>
+	  <OMV name="y" />
+	</OMA>
+      </OMA>
+      <OMV name="y" />
+    </OMA>
+  </OMA>
+</OMOBJ>

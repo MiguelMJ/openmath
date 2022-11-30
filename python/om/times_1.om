@@ -1,0 +1,35 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMBIND>
+  <OMS cd="quant1" name="forall" />
+  <OMBVAR>
+    <OMV name="a" />
+    <OMV name="b" />
+    <OMV name="c" />
+  </OMBVAR>
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+    <OMA>
+      <OMS cd="arith1" name="times" />
+      <OMV name="a" />
+      <OMA>
+        <OMS cd="arith1" name="plus" />
+	<OMV name="b" />
+	<OMV name="c" />
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="plus" />
+      <OMA>
+        <OMS cd="arith1" name="times" />
+	<OMV name="a" />
+	<OMV name="b" />
+      </OMA>
+      <OMA>
+        <OMS cd="arith1" name="times" />
+	<OMV name="a" />
+	<OMV name="c" />
+      </OMA>
+    </OMA>
+  </OMA>
+</OMBIND>
+</OMOBJ>

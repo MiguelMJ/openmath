@@ -1,0 +1,26 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+    <OMBIND>
+      <OMS cd="quant1" name="forall" />
+      <OMBVAR>
+        <OMV name="x" />
+        <OMV name="y" />
+      </OMBVAR>
+      <OMA>
+        <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="complex1" name="complex_cartesian" />
+          <OMV name="x" />
+          <OMV name="y" />
+        </OMA>
+        <OMA>
+          <OMS cd="arith1" name="plus" />
+          <OMV name="x" />
+          <OMA>
+            <OMS cd="arith1" name="times" />
+            <OMS cd="nums1" name="i" />
+            <OMV name="y" />
+          </OMA>
+        </OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>

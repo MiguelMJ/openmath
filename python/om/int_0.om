@@ -1,0 +1,31 @@
+<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq" />
+        <OMA>
+          <OMS cd="calculus1" name="diff" />
+          <OMBIND>
+            <OMS cd="fns1" name="lambda" />
+            <OMBVAR>
+              <OMV name="y" />
+            </OMBVAR>
+            <OMA>
+              <OMA>
+                <OMS cd="calculus1" name="int" />
+                <OMBIND>
+                  <OMS cd="fns1" name="lambda" />
+                  <OMBVAR>
+                    <OMV name="z" />
+                  </OMBVAR>
+                  <OMA>
+                    <OMV name="f" />
+                    <OMV name="z" />
+                  </OMA>
+                </OMBIND>
+              </OMA>
+              <OMV name="y" />
+            </OMA>
+          </OMBIND>
+        </OMA>
+        <OMV name="f" />
+  </OMA>
+</OMOBJ>
