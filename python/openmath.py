@@ -7,7 +7,8 @@ from xml.dom import minidom
 
 class _OMBase():
     version="2.0"
-    
+    parent=None
+
     def _customdict(self):
         d = self.__dict__
         return {
@@ -16,7 +17,7 @@ class _OMBase():
                 k: d[k] 
                 for k 
                 in sorted(d.keys())
-                if d[k] is not None and not callable(d[k])
+                if d[k] is not None and k != "parent"
             }
         }
     
@@ -44,16 +45,46 @@ class _OMBase():
     def hasValidCDBase(self):
         return not hasattr(self, "cdbase") or self.cdbase == None or type(self.cdbase) is str
     
-    def apply(self, f):
+    def apply(self, f, accumulator=[]):
+        if self in accumulator:
+            return
+        else:
+            accumulator.append(self)
         f(self)
         d = self.__dict__
         for k in list(d.keys())[::-1]: # reversed keys
             if isinstance(d[k], _OMBase):
-                d[k].apply(f)
+                d[k].apply(f, accumulator)
             elif type(d[k]) is list:
                 for a in d[k]:
                     if isinstance(a, _OMBase):
-                        a.apply(f)
+                        a.apply(f, accumulator)
+                    elif type(a) is list:
+                        for b in a:
+                            if isinstance(b, _OMBase):
+                                b.apply(f, accumulator)
+
+    def getCDBase(self):
+        if "cdbase" not in dir(self) or self.cdbase is None:
+            if self.parent is None:
+                return None
+            return self.parent.getCDBase()
+        return self.cdbase
+
+    def replace(self, obj1, obj2):
+        d = self.__dict__
+        for k in d:
+            if obj1 is d[k]:
+                d[k] = obj2
+            elif type(d[k]) is list:
+                for i,elem in enumerate(d[k]):
+                    if obj1 is elem:
+                        d[k][i] = obj2
+                    elif type(elem) is list:
+                        for j,subelem in enumerate(elem):
+                            if subelem is obj1:
+                                elem[j] = obj2
+                    
 
     def __eq__(self, other):
         if not isinstance(other, _OMBase):
@@ -64,30 +95,29 @@ class _OMBase():
         
         def compare(x,y):
             ret = None
-            #print(">>>>",x,"==",y,"?")
             if type(x) is list and type(y) is list:
                 ret = len(x) == len(y) and all(compare(x[i], y[i]) for i in range(len(x)))
             else:
                 ret = x == y
-            #print (">>>>",ret, end="\n" if ret else " <<<<\n")
             return ret
 
         return all(compare(a.get(k), b.get(k)) for k in allkeys)
              
-
     def __str__(self):
-        return self.kind+str(self.__dict__)
+        return "OM"+str(self._customdict())
     
     def __repr__(self):
-        return self.kind+repr(self.__dict__)
+        return "OM"+repr(self._customdict())
 
 class Object(_OMBase):
     kind="OMOBJ"
     def __init__(self, object, **kargs):
         self.object = object
-        self.xlmns = None
+        object.parent = self
+        self.xmlns = None
         self.version = None
         self.cdbase = None
+        self.parent = kargs.get("parent")
         for k in kargs:
             setattr(self, k, kargs[k])
     
@@ -96,7 +126,7 @@ class Object(_OMBase):
     
     def toElement(self):
         el = ET.Element(self.kind)
-        el.set("xlmns", self.xlmns) if self.xlmns is not None else None
+        el.set("xmlns", self.xmlns) if self.xmlns is not None else None
         el.set("version", self.version) if self.version is not None else None
         el.set("cdbase", self.cdbase) if self.cdbase is not None else None
         el.append(self.object.toElement())
@@ -160,7 +190,7 @@ class Symbol(_OMBase):
         self.cdbase = cdbase
         self.cd = cd
         self.name = name
-    
+
     def isValid(self):
         return type(self.cd) is str and type(self.name) is str and self.hasValidCDBase()
 
@@ -187,7 +217,10 @@ class Application(_OMBase):
     def __init__(self, applicant, *arguments, cdbase=None):
         self.cdbase = cdbase
         self.applicant = applicant
+        applicant.parent = self
         self.arguments = list(arguments)
+        for a in self.arguments:
+            a.parent = self
     
     def isValid():
          return self.hasValidCDBase() and self.applicant.isValid() and all(a.isValid() for a in arguments)
@@ -206,7 +239,11 @@ class Attribution(_OMBase):
     def __init__(self, attributes, object, cdbase=None):
         self.cdbase = attributes
         self.attributes = attributes
+        for pair in self.attributes:
+            for elem in pair:
+                elem.parent = self
         self.object = object
+        object.parent = self
     
     def isValid(self):
         return self.hasValidCDBase() and self.object.isValid() and all(isinstance(a, Symbol) and a.isValid() and b.isValid() for [a,b] in attributes) 
@@ -229,6 +266,10 @@ class Binding(_OMBase):
         self.binder = binder
         self.variables = variables
         self.object = object
+        binder.parent = self
+        for v in self.variables:
+            v.parent = self
+        object.parent = self
 
     def isValid(self):
         if len(variables) == 0 or (cdbase is not None and type(cdbase) is not str):
@@ -257,7 +298,10 @@ class Error(_OMBase):
     kind="OME"
     def __init__(self, error, arguments):
         self.error = error
+        error.parent = self
         self.arguments = arguments
+        for a in arguments:
+            a.parent = self
     
     def isValid(self):
         return type(self.error) is Symbol
@@ -289,7 +333,7 @@ def fromDict(dictionary):
                 fromDict(kargs["object"]), 
                 cdbase=kargs.get("cdbase"), 
                 version=kargs.get("version"),
-                xlmns=kargs.get("xlmns")
+                xmlns=kargs.get("xmlns")
             )
         
         case {"kind": "OMI", "integer": x, **kargs}:
@@ -352,7 +396,17 @@ def fromDict(dictionary):
             raise ValueError("A valid dictionary is required")
 
 def fromElement(elem):
-    match elem.tag.split("}")[-1]:
+    # handle xml namespaces
+    if elem.tag[0] == "{":
+        [ns, tag] = elem.tag[1:].split("}")
+    else:
+        ns = None
+        tag = elem.tag
+
+    def qname(t):
+        return t if ns is None else ("{%s}%s" % (ns, t))
+    
+    match tag:
         case "OMOBJ":
             return Object(fromElement(elem[0]), **elem.attrib)
 
@@ -406,7 +460,7 @@ def fromElement(elem):
         case "OMBIND":
             return Binding(
                 fromElement(elem[0]),
-                [fromElement(x) for x in elem.find("OMBVAR")],
+                [fromElement(x) for x in elem.find(qname("OMBVAR"))],
                 fromElement(elem[2])
             )
 
