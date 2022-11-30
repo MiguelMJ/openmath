@@ -1,4 +1,4 @@
-<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
 <OMA><OMS cd="logic1" name="implies" />
      <OMA><OMS cd="relation3" name="is_reflexive" />
           <OMV name="S" />    <OMV name="R" /> 

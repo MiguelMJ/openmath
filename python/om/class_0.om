@@ -1,4 +1,4 @@
-<OMOBJ xmlns:ns0="http://www.openmath.org/OpenMath" version="2.0">
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
 <OMA><OMS cd="relation1" name="eq" />
      <OMA><OMS cd="relation3" name="class" />
           <OMV name="S" />    <OMV name="R" /> <OMV name="a" />
