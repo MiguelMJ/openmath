@@ -1,7 +1,9 @@
 """
+
 """
 import json
 import xml.etree.ElementTree as ET
+from copy import deepcopy
 from xml.dom import minidom
 
 
@@ -30,7 +32,9 @@ class _OMBase():
     def toXML(self, *args, **kargs):
         tostringaccepted = ["encoding", "method", "xml_declaration", "default_namespace", "short_empty_elements"]
         tostringkargs = {k:kargs[k] for k in kargs if k in tostringaccepted}
-        ret = ET.tostring(self.toElement(), *args, **tostringkargs).decode("utf8")
+        root = self.toElement()
+        root.set("xmlns", "http://www.openmath.org/OpenMath")
+        ret = ET.tostring(root, *args, **tostringkargs).decode("utf8")
         toprettyaccepted = ["indent", "newl", "encoding", "standalone"]
         toprettykargs = {k:kargs[k] for k in kargs if k in toprettyaccepted}
         if any(x in kargs for x in toprettykargs if x != "encoding"):
@@ -45,24 +49,32 @@ class _OMBase():
     def hasValidCDBase(self):
         return not hasattr(self, "cdbase") or self.cdbase == None or type(self.cdbase) is str
     
-    def apply(self, f, accumulator=[]):
-        if self in accumulator:
+    applydepth = 0
+    def apply(self, f, accumulator=None):
+        _OMBase.applydepth += 1
+        mydepth = _OMBase.applydepth
+        if accumulator is None:
+            accumulator = []
+
+        if any(self is x for x in accumulator):
             return
         else:
             accumulator.append(self)
-        f(self)
-        d = self.__dict__
+        
+        f(self) 
+        d = self._customdict()
         for k in list(d.keys())[::-1]: # reversed keys
             if isinstance(d[k], _OMBase):
                 d[k].apply(f, accumulator)
             elif type(d[k]) is list:
-                for a in d[k]:
+                for i,a in enumerate(d[k]):
                     if isinstance(a, _OMBase):
                         a.apply(f, accumulator)
                     elif type(a) is list:
-                        for b in a:
+                        for j,b in enumerate(a):
                             if isinstance(b, _OMBase):
                                 b.apply(f, accumulator)
+        _OMBase.applydepth -= 1
 
     def getCDBase(self):
         if "cdbase" not in dir(self) or self.cdbase is None:
@@ -75,16 +87,18 @@ class _OMBase():
         d = self.__dict__
         for k in d:
             if obj1 is d[k]:
-                d[k] = obj2
-            elif type(d[k]) is list:
+                d[k] = deepcopy(obj2)
+                d[k].parent = self
+            elif type(d[k]) is list and not (k == "variables" and self.kind == "OMBIND"):
                 for i,elem in enumerate(d[k]):
                     if obj1 is elem:
-                        d[k][i] = obj2
+                        d[k][i] = deepcopy(obj2)
+                        d[k][i].parent = self
                     elif type(elem) is list:
                         for j,subelem in enumerate(elem):
                             if subelem is obj1:
-                                elem[j] = obj2
-                    
+                                elem[j] = deepcopy(obj2)
+                                elem[j].parent = self
 
     def __eq__(self, other):
         if not isinstance(other, _OMBase):
@@ -92,6 +106,11 @@ class _OMBase():
         a = self._customdict()
         b = other._customdict()
         allkeys = set([*a, *b])
+        
+        if "cdbase" in allkeys:
+            if self.getCDBase() != self.getCDBase():
+                return False
+            allkeys.remove("cdbase")
         
         def compare(x,y):
             ret = None
@@ -222,8 +241,8 @@ class Application(_OMBase):
         for a in self.arguments:
             a.parent = self
     
-    def isValid():
-         return self.hasValidCDBase() and self.applicant.isValid() and all(a.isValid() for a in arguments)
+    def isValid(self):
+         return self.hasValidCDBase() and self.applicant.isValid() and all(a.isValid() for a in self.arguments)
 
     def toElement(self):
         el = ET.Element(self.kind)
@@ -272,7 +291,7 @@ class Binding(_OMBase):
         object.parent = self
 
     def isValid(self):
-        if len(variables) == 0 or (cdbase is not None and type(cdbase) is not str):
+        if len(self.variables) == 0 or (self.cdbase is not None and type(self.cdbase) is not str):
             return False
         for v in self.variables:
             isVariable = type(v) is Variable

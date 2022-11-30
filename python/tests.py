@@ -3,6 +3,7 @@ from pathlib import Path
 
 import openmath as OM
 import openmathcd as OMCD
+import openmathutil as OMUTIL
 
 omdir = Path("om")
 
@@ -25,6 +26,8 @@ def parsing_tests():
             om = OM.parse(omxml)
             print(" Parsed")
             assert om != last, "Unexpected equality"
+            assert om.isValid(), "use of isValid"
+            print(" Validated")
             # JSON
             om1 = OM.parseJSON(
                 om.toJSON()
@@ -61,21 +64,51 @@ def replacement_test():
     om = OM.parse(load_om("abs_0.om"))
     var_x = OM.Variable("x")
     int_3 = OM.Integer(333)
-    sym_plus = OM.Symbol("plus", "arith")
-    sym_minus = OM.Symbol("minus", "arith")
-    print(om.toXML(indent=2))
+    sym_plus = OM.Symbol("plus", "arith1")
+    sym_minus = OM.Symbol("minus", "arith1")
+    #print(om.toXML(indent=2))
+    print(OMUTIL.visualize(om))
 
     def replace(obj, x,y):
-        if obj == x and obj.parent is not None:
+        if obj.parent is None:
+            return
+        if obj == x:
             obj.parent.replace(obj, y)
-    
+                
     om.apply(lambda o: replace(o, var_x, int_3))
-    print(om.toXML(indent=2))
+    #print(om.toXML(indent=2))
+    print(OMUTIL.visualize(om))
 
     om.apply(lambda o: replace(o, sym_plus, sym_minus))
-    print(om.toXML(indent=2))
+    #print(om.toXML(indent=2))
+    print(OMUTIL.visualize(om))
 
+def bound_free_test():
+    def getBoundAndFreeVars(om):
+        bound = []
+        free = []
+        allvars = []
+        def subGetBoundAndFreeVars(om):
+            if om.kind == "OMV":
+                if om.name not in allvars:
+                    allvars.append(om.name)
+                if om.name not in bound and om.name not in free:
+                    free.append(om.name)
+            elif om.kind == "OMBIND":
+                for v in om.variables:
+                    bound.append(v.name)
+        
+        om.apply(subGetBoundAndFreeVars)
+        return (allvars, bound, free)
+
+    oms = 
+    for omf in oms:
+        om = OM.parse(load_om(omf))
+        print(OMUTIL.visualize(om))
+        print(getBoundAndFreeVars(om))
+    
 if __name__ == "__main__":
     #parsing_tests()
     #get_cd_test()
-    replacement_test()
+    #replacement_test()
+    bound_free_test()
