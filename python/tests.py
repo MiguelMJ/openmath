@@ -101,9 +101,11 @@ def bound_free_test():
         om.apply(subGetBoundAndFreeVars)
         return (allvars, bound, free)
 
-    oms = 
+    om = OM.Binding(OM.Symbol("forall","quant1"), [OM.Variable("x")], OM.Application(OM.Symbol("plus","arith1"), OM.Variable("x"),OM.Variable("y")))
+    oms = [om]
+    #oms = os.listdir(omdir)
     for omf in oms:
-        om = OM.parse(load_om(omf))
+        #om = OM.parse(load_om(omf))
         print(OMUTIL.visualize(om))
         print(getBoundAndFreeVars(om))
     

@@ -27,3 +27,30 @@ def visualize(om):
             return "%s[%s]" % (visualize(om.obj), "; ".join(visualize(x) for x in om.attributes))
         case _:
             return "ERR"
+
+def replace(om, x, y):
+    def singleReplace(om, x, y):
+        if obj.parent is None:
+            return
+        if obj == x:
+            obj.parent.replace(obj, y)
+
+    om.apply(lambda o: replace(o, x, y))
+
+def getVars(om):
+    bound = []
+    free = []
+    allvars = []
+    
+    def subGetVars(om):
+        if om.kind == "OMV":
+            if om.name not in allvars:
+                allvars.append(om.name)
+            if om.name not in bound and om.name not in free:
+                free.append(om.name)
+        elif om.kind == "OMBIND":
+            for v in om.variables:
+                bound.append(v.name)
+    
+    om.apply(subGetVars)
+    return (allvars, bound, free)
