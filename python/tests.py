@@ -84,22 +84,6 @@ def replacement_test():
     print(OMUTIL.visualize(om))
 
 def bound_free_test():
-    def getBoundAndFreeVars(om):
-        bound = []
-        free = []
-        allvars = []
-        def subGetBoundAndFreeVars(om):
-            if om.kind == "OMV":
-                if om.name not in allvars:
-                    allvars.append(om.name)
-                if om.name not in bound and om.name not in free:
-                    free.append(om.name)
-            elif om.kind == "OMBIND":
-                for v in om.variables:
-                    bound.append(v.name)
-        
-        om.apply(subGetBoundAndFreeVars)
-        return (allvars, bound, free)
 
     om = OM.Binding(OM.Symbol("forall","quant1"), [OM.Variable("x")], OM.Application(OM.Symbol("plus","arith1"), OM.Variable("x"),OM.Variable("y")))
     oms = [om]
@@ -107,10 +91,10 @@ def bound_free_test():
     for omf in oms:
         #om = OM.parse(load_om(omf))
         print(OMUTIL.visualize(om))
-        print(getBoundAndFreeVars(om))
+        print(OMUTIL.getVars(om))
     
 if __name__ == "__main__":
-    #parsing_tests()
-    #get_cd_test()
-    #replacement_test()
+    parsing_tests()
+    get_cd_test()
+    replacement_test()
     bound_free_test()
