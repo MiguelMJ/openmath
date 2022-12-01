@@ -29,13 +29,13 @@ def visualize(om):
             return "ERR"
 
 def replace(om, x, y):
-    def singleReplace(om, x, y):
+    def singleReplace(obj, x, y):
         if obj.parent is None:
             return
         if obj == x:
             obj.parent.replace(obj, y)
 
-    om.apply(lambda o: replace(o, x, y))
+    om.apply(lambda o: singleReplace(o, x, y))
 
 def getVars(om):
     bound = []
