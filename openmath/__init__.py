@@ -1,6 +1,7 @@
-"""
-OpenMath standard implementation. This module provides class and functions to
-work with OpenMath mathematical objects.
+"""OpenMath standard implementation
+
+This module provides class and functions to
+work with OpenMath mathematical objects
 """
 import json
 import xml.etree.ElementTree as ET
@@ -11,31 +12,33 @@ from xml.dom import minidom
 class _OMBase:
     """Base class for OpenMath objects"""
 
-    version = "2.0"
     parent = None
 
-    def _customdict(self):
+    def _customdict(self) -> dict:
         """Get a dictionary with the attributes of the math object"""
-
         d = self.__dict__
         return {
             "kind": self.kind,
             **{k: d[k] for k in sorted(d.keys()) if d[k] is not None and k != "parent"},
         }
 
-    def toJSON(self, *args, **kargs):
-        """
-        Serialize the object to a JSON string
+    def toJSON(self, *args, **kargs) -> str:
+        """Serialize the object to a JSON string
 
-        details
+        All arguments are passed directly to the json.dumps function
         """
-        
         return json.dumps(self, default=_OMBase._customdict, *args, **kargs)
 
     def toElement(self):
+        """Return the object as an XML element from the xml.etree module"""
         raise NotImplementedError("OpenMath XML encoding")
 
-    def toXML(self, *args, **kargs):
+    def toXML(self, *args, **kargs) -> str:
+        """Serialize the object to a XML string
+
+        The arguments can be any of those accepted by either the
+        xml.etree.ElementTree.toString function or minidom.prettyxml
+        """
         tostringaccepted = [
             "encoding",
             "method",
@@ -55,21 +58,28 @@ class _OMBase:
             ret = minidom.parseString(ret).toprettyxml(**toprettykargs)
         return ret
 
-    def isValid(self):
+    def isValid(self) -> bool:
+        """Check wether the mathematical object is valid
+
+        IMPORTANT: This function is susceptible of false positives.
+        """
         return True
 
-    def hasValidCDBase(self):
+    def hasValidCDBase(self) -> bool:
+        """Check wether the cdbase attribute is a string or None"""
         return (
             not hasattr(self, "cdbase")
             or self.cdbase == None
             or type(self.cdbase) is str
         )
 
-    applydepth = 0
+    def apply(self, f, accumulator=None) -> None:
+        """Traverse the object tree and apply a function to each node
 
-    def apply(self, f, accumulator=None):
-        _OMBase.applydepth += 1
-        mydepth = _OMBase.applydepth
+        Arguments:
+            f -- function to be applied
+            accumulator -- list of visited nodes (used to prevent cycles)
+        """
         if accumulator is None:
             accumulator = []
 
@@ -91,16 +101,22 @@ class _OMBase:
                         for j, b in enumerate(a):
                             if isinstance(b, _OMBase):
                                 b.apply(f, accumulator)
-        _OMBase.applydepth -= 1
 
-    def getCDBase(self):
+    def getCDBase(self) -> str:
+        """Get a valid cdbase attribute from an object or its ancestors"""
         if "cdbase" not in dir(self) or self.cdbase is None:
             if self.parent is None:
                 return None
             return self.parent.getCDBase()
         return self.cdbase
 
-    def replace(self, obj1, obj2):
+    def replace(self, obj1, obj2) -> None:
+        """Replace the instances of an object with another one
+
+        Arguments:
+        obj1 -- reference of the object to be replaced
+        obj2 -- object to replace obj1
+        """
         d = self.__dict__
         for k in d:
             if obj1 is d[k]:
@@ -119,7 +135,8 @@ class _OMBase:
                                 elem[j] = deepcopy(obj2)
                                 elem[j].parent = self
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
+        """Return true if all attributes are present and equal in both instances"""
         if not isinstance(other, _OMBase):
             return False
         a = self._customdict()
@@ -144,20 +161,34 @@ class _OMBase:
         return all(compare(a.get(k), b.get(k)) for k in allkeys)
 
     def __str__(self):
+        """Return the string representation of the object"""
         return "OM" + str(self._customdict())
 
     def __repr__(self):
+        """Return repr(self)"""
         return "OM" + repr(self._customdict())
 
 
 class Object(_OMBase):
+    """Implementation of the OpenMath object constructor OMOBJ
+
+    Arguments:
+        object -- The OpenMath object
+
+    Keyword arguments:
+        xmlns -- XML namespace, usually "http://www.openmath.org/OpenMath"
+        version -- OpenMath version (default="2.0")
+        cdbase -- Base CD URI (default=None)
+        parent -- Parent object
+    """
+
     kind = "OMOBJ"
 
     def __init__(self, object, **kargs):
         self.object = object
         object.parent = self
         self.xmlns = None
-        self.version = None
+        self.version = "2.0"
         self.cdbase = None
         self.parent = kargs.get("parent")
         for k in kargs:
@@ -176,6 +207,11 @@ class Object(_OMBase):
 
 
 class Integer(_OMBase):
+    """Implementation of the Integer object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMI"
 
     def __init__(self, integer):
@@ -191,6 +227,11 @@ class Integer(_OMBase):
 
 
 class Float(_OMBase):
+    """Implementation of the Float object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMF"
 
     def __init__(self, float):
@@ -206,6 +247,11 @@ class Float(_OMBase):
 
 
 class String(_OMBase):
+    """Implementation of the String object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMSTR"
 
     def __init__(self, string):
@@ -221,6 +267,11 @@ class String(_OMBase):
 
 
 class Bytearray(_OMBase):
+    """Implementation of the Bytearray object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMB"
 
     def __init__(self, bytes):
@@ -236,6 +287,11 @@ class Bytearray(_OMBase):
 
 
 class Symbol(_OMBase):
+    """Implementation of the Symbol object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMS"
 
     def __init__(self, name, cd, cdbase=None):
@@ -256,6 +312,11 @@ class Symbol(_OMBase):
 
 
 class Variable(_OMBase):
+    """Implementation of the Variable object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_basic
+    """
+
     kind = "OMV"
 
     def __init__(self, name):
@@ -268,6 +329,11 @@ class Variable(_OMBase):
 
 
 class Application(_OMBase):
+    """Implementation of the Application object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_compound
+    """
+
     kind = "OMA"
 
     def __init__(self, applicant, *arguments, cdbase=None):
@@ -296,6 +362,11 @@ class Application(_OMBase):
 
 
 class Attribution(_OMBase):
+    """Implementation of the Attribution object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_compound
+    """
+
     kind = "OMATTR"
 
     def __init__(self, attributes, object, cdbase=None):
@@ -330,6 +401,11 @@ class Attribution(_OMBase):
 
 
 class Binding(_OMBase):
+    """Implementation of the Binding object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_compound
+    """
+
     kind = "OMBIND"
 
     def __init__(self, binder, variables, object, cdbase=None):
@@ -369,6 +445,11 @@ class Binding(_OMBase):
 
 
 class Error(_OMBase):
+    """Implementation of the Error object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_compound
+    """
+
     kind = "OME"
 
     def __init__(self, error, arguments):
@@ -390,6 +471,10 @@ class Error(_OMBase):
 
 
 def parse(text):
+    """Parse either JSON or XML strings into a mathematical object
+
+    See parseJSON and parseXML
+    """
     try:
         return parseJSON(text)
     except json.JSONDecodeError:
@@ -397,14 +482,26 @@ def parse(text):
 
 
 def parseJSON(text):
+    """Parse a JSON string into a mathematical object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_json-the-json-encoding
+    """
     return fromDict(json.loads(text))
 
 
 def parseXML(text):
+    """Parse a XML string into a mathematical object
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_xml
+    """
     return fromElement(ET.fromstring(text))
 
 
 def fromDict(dictionary):
+    """Build a mathematical object from a python dictionary
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_json-the-json-encoding
+    """
     match (dictionary):
 
         case {"kind": "OMOBJ", **kargs}:
@@ -480,6 +577,10 @@ def fromDict(dictionary):
 
 
 def fromElement(elem):
+    """Build a mathematical object from a xml.etree.Element
+
+    Reference: https://openmath.org/standard/om20-2019-07-01/omstd20.html#sec_xml
+    """
     # handle xml namespaces
     if elem.tag[0] == "{":
         [ns, tag] = elem.tag[1:].split("}")
