@@ -1,10 +1,11 @@
 import openmath as OM
 
+
 def visualize(om):
     assert isinstance(om, OM._OMBase) or type(om) is list
     if type(om) is list:
         return ", ".join(visualize(x) for x in om)
-    match(om.kind):
+    match (om.kind):
         case "OMOBJ":
             return visualize(om.object)
         case "OMI":
@@ -22,11 +23,19 @@ def visualize(om):
         case "OMA":
             return "%s( %s )" % (visualize(om.applicant), visualize(om.arguments))
         case "OMBIND":
-            return "%s %s: %s" % (visualize(om.binder), visualize(om.variables), visualize(om.object))
+            return "%s %s: %s" % (
+                visualize(om.binder),
+                visualize(om.variables),
+                visualize(om.object),
+            )
         case "OMATTR":
-            return "%s[%s]" % (visualize(om.obj), "; ".join(visualize(x) for x in om.attributes))
+            return "%s[%s]" % (
+                visualize(om.obj),
+                "; ".join(visualize(x) for x in om.attributes),
+            )
         case _:
             return "ERR"
+
 
 def replace(om, x, y):
     def singleReplace(obj, x, y):
@@ -37,11 +46,12 @@ def replace(om, x, y):
 
     om.apply(lambda o: singleReplace(o, x, y))
 
+
 def getVars(om):
     bound = []
     free = []
     allvars = []
-    
+
     def subGetVars(om):
         if om.kind == "OMV":
             if om.name not in allvars:
@@ -51,6 +61,6 @@ def getVars(om):
         elif om.kind == "OMBIND":
             for v in om.variables:
                 bound.append(v.name)
-    
+
     om.apply(subGetVars)
     return (allvars, bound, free)

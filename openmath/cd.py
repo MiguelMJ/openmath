@@ -4,8 +4,9 @@ import re
 
 import openmath as OM
 
-cdbase_default="http://www.openmath.org/cd"
+cdbase_default = "http://www.openmath.org/cd"
 CDs = {}
+
 
 def getUri(oms, ocd=True):
     cdbase = oms.getCDBase()
@@ -15,7 +16,8 @@ def getUri(oms, ocd=True):
     if cdbase is None or cd is None:
         return None
     id = "#" + getattr(oms, "name", "")
-    return cdbase.rstrip("/")+"/"+cd+(".ocd" if ocd else id)
+    return cdbase.rstrip("/") + "/" + cd + (".ocd" if ocd else id)
+
 
 def buildCD(ocdxml):
     # get namespace
@@ -23,14 +25,11 @@ def buildCD(ocdxml):
         [ns, _] = ocdxml.tag[1:].split("}")
     else:
         ns = None
-    # single method to get tag with no ns    
+    # single method to get tag with no ns
     def qname(t):
         return t if ns is None else ("{%s}%s" % (ns, t))
 
-    cd = {
-        "meta": {},
-        "entries": {} 
-    }
+    cd = {"meta": {}, "entries": {}}
     for child in ocdxml:
         tag = child.tag.split("}")[-1]
         if tag == "CDDefinition":
@@ -45,12 +44,13 @@ def buildCD(ocdxml):
             cd["meta"][tag[2:]] = child.text
     return cd
 
+
 def getDictionary(arg1):
     if isinstance(arg1, OM.Symbol):
         ocd_uri = re.sub("#.*$", "", getUri(arg1))
     else:
         ocd_uri = arg1
-    
+
     if ocd_uri not in CDs:
         ocdtext = requests.get(ocd_uri).text
         ocdxml = ET.fromstring(ocdtext)
@@ -58,8 +58,8 @@ def getDictionary(arg1):
 
     return CDs[ocd_uri]
 
+
 def help(oms):
     cd = getDictionary(getUri(oms, ocd=True))
     entry = cd["entries"][oms.name]
     return (entry["role"], entry["desc"])
-    

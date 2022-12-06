@@ -1,5 +1,6 @@
 """
-
+OpenMath standard implementation. This module provides class and functions to
+work with OpenMath mathematical objects.
 """
 import json
 import xml.etree.ElementTree as ET
@@ -7,36 +8,47 @@ from copy import deepcopy
 from xml.dom import minidom
 
 
-class _OMBase():
-    version="2.0"
-    parent=None
+class _OMBase:
+    """Base class for OpenMath objects"""
+
+    version = "2.0"
+    parent = None
 
     def _customdict(self):
+        """Get a dictionary with the attributes of the math object"""
+
         d = self.__dict__
         return {
             "kind": self.kind,
-            **{
-                k: d[k] 
-                for k 
-                in sorted(d.keys())
-                if d[k] is not None and k != "parent"
-            }
+            **{k: d[k] for k in sorted(d.keys()) if d[k] is not None and k != "parent"},
         }
-    
+
     def toJSON(self, *args, **kargs):
+        """
+        Serialize the object to a JSON string
+
+        details
+        """
+        
         return json.dumps(self, default=_OMBase._customdict, *args, **kargs)
 
     def toElement(self):
         raise NotImplementedError("OpenMath XML encoding")
 
     def toXML(self, *args, **kargs):
-        tostringaccepted = ["encoding", "method", "xml_declaration", "default_namespace", "short_empty_elements"]
-        tostringkargs = {k:kargs[k] for k in kargs if k in tostringaccepted}
+        tostringaccepted = [
+            "encoding",
+            "method",
+            "xml_declaration",
+            "default_namespace",
+            "short_empty_elements",
+        ]
+        tostringkargs = {k: kargs[k] for k in kargs if k in tostringaccepted}
         root = self.toElement()
         root.set("xmlns", "http://www.openmath.org/OpenMath")
         ret = ET.tostring(root, *args, **tostringkargs).decode("utf8")
         toprettyaccepted = ["indent", "newl", "encoding", "standalone"]
-        toprettykargs = {k:kargs[k] for k in kargs if k in toprettyaccepted}
+        toprettykargs = {k: kargs[k] for k in kargs if k in toprettyaccepted}
         if any(x in kargs for x in toprettykargs if x != "encoding"):
             if type(kargs.get("indent")) is int:
                 toprettykargs["indent"] *= " "
@@ -45,11 +57,16 @@ class _OMBase():
 
     def isValid(self):
         return True
-    
+
     def hasValidCDBase(self):
-        return not hasattr(self, "cdbase") or self.cdbase == None or type(self.cdbase) is str
-    
+        return (
+            not hasattr(self, "cdbase")
+            or self.cdbase == None
+            or type(self.cdbase) is str
+        )
+
     applydepth = 0
+
     def apply(self, f, accumulator=None):
         _OMBase.applydepth += 1
         mydepth = _OMBase.applydepth
@@ -60,18 +77,18 @@ class _OMBase():
             return
         else:
             accumulator.append(self)
-        
-        f(self) 
+
+        f(self)
         d = self._customdict()
-        for k in list(d.keys())[::-1]: # reversed keys
+        for k in list(d.keys())[::-1]:  # reversed keys
             if isinstance(d[k], _OMBase):
                 d[k].apply(f, accumulator)
             elif type(d[k]) is list:
-                for i,a in enumerate(d[k]):
+                for i, a in enumerate(d[k]):
                     if isinstance(a, _OMBase):
                         a.apply(f, accumulator)
                     elif type(a) is list:
-                        for j,b in enumerate(a):
+                        for j, b in enumerate(a):
                             if isinstance(b, _OMBase):
                                 b.apply(f, accumulator)
         _OMBase.applydepth -= 1
@@ -89,13 +106,15 @@ class _OMBase():
             if obj1 is d[k]:
                 d[k] = deepcopy(obj2)
                 d[k].parent = self
-            elif type(d[k]) is list and not (k == "variables" and self.kind == "OMBIND"):
-                for i,elem in enumerate(d[k]):
+            elif type(d[k]) is list and not (
+                k == "variables" and self.kind == "OMBIND"
+            ):
+                for i, elem in enumerate(d[k]):
                     if obj1 is elem:
                         d[k][i] = deepcopy(obj2)
                         d[k][i].parent = self
                     elif type(elem) is list:
-                        for j,subelem in enumerate(elem):
+                        for j, subelem in enumerate(elem):
                             if subelem is obj1:
                                 elem[j] = deepcopy(obj2)
                                 elem[j].parent = self
@@ -106,30 +125,34 @@ class _OMBase():
         a = self._customdict()
         b = other._customdict()
         allkeys = set([*a, *b])
-        
+
         if "cdbase" in allkeys:
             if self.getCDBase() != self.getCDBase():
                 return False
             allkeys.remove("cdbase")
-        
-        def compare(x,y):
+
+        def compare(x, y):
             ret = None
             if type(x) is list and type(y) is list:
-                ret = len(x) == len(y) and all(compare(x[i], y[i]) for i in range(len(x)))
+                ret = len(x) == len(y) and all(
+                    compare(x[i], y[i]) for i in range(len(x))
+                )
             else:
                 ret = x == y
             return ret
 
         return all(compare(a.get(k), b.get(k)) for k in allkeys)
-             
+
     def __str__(self):
-        return "OM"+str(self._customdict())
-    
+        return "OM" + str(self._customdict())
+
     def __repr__(self):
-        return "OM"+repr(self._customdict())
+        return "OM" + repr(self._customdict())
+
 
 class Object(_OMBase):
-    kind="OMOBJ"
+    kind = "OMOBJ"
+
     def __init__(self, object, **kargs):
         self.object = object
         object.parent = self
@@ -139,10 +162,10 @@ class Object(_OMBase):
         self.parent = kargs.get("parent")
         for k in kargs:
             setattr(self, k, kargs[k])
-    
+
     def isValid(self):
         return self.hasValidCDBase and self.object.isValid()
-    
+
     def toElement(self):
         el = ET.Element(self.kind)
         el.set("xmlns", self.xmlns) if self.xmlns is not None else None
@@ -150,25 +173,29 @@ class Object(_OMBase):
         el.set("cdbase", self.cdbase) if self.cdbase is not None else None
         el.append(self.object.toElement())
         return el
-        
+
+
 class Integer(_OMBase):
-    kind="OMI"
+    kind = "OMI"
+
     def __init__(self, integer):
         self.integer = integer
-    
+
     def isValid(self):
         return type(self.integer) is int
-    
+
     def toElement(self):
         el = ET.Element(self.kind)
         el.text = str(self.integer)
         return el
 
+
 class Float(_OMBase):
-    kind="OMF"
+    kind = "OMF"
+
     def __init__(self, float):
         self.float = float
-    
+
     def isValid(self):
         return type(self.float) is float
 
@@ -177,11 +204,13 @@ class Float(_OMBase):
         el.text = str(self.float)
         return el
 
+
 class String(_OMBase):
-    kind="OMSTR"
+    kind = "OMSTR"
+
     def __init__(self, string):
         self.string = string
-    
+
     def isValid(self):
         return type(self.string) is str
 
@@ -190,11 +219,13 @@ class String(_OMBase):
         el.text = self.string
         return el
 
+
 class Bytearray(_OMBase):
-    kind="OMB"
+    kind = "OMB"
+
     def __init__(self, bytes):
         self.bytes = bytes
-    
+
     def isValid(self):
         if type(self.bytes) is not list:
             return False
@@ -203,8 +234,10 @@ class Bytearray(_OMBase):
                 return False
         return True
 
+
 class Symbol(_OMBase):
-    kind="OMS"
+    kind = "OMS"
+
     def __init__(self, name, cd, cdbase=None):
         self.cdbase = cdbase
         self.cd = cd
@@ -221,8 +254,10 @@ class Symbol(_OMBase):
             el.set("cdbase", self.cdbase)
         return el
 
+
 class Variable(_OMBase):
-    kind="OMV"
+    kind = "OMV"
+
     def __init__(self, name):
         self.name = name
 
@@ -231,8 +266,10 @@ class Variable(_OMBase):
         el.set("name", self.name)
         return el
 
+
 class Application(_OMBase):
-    kind="OMA"
+    kind = "OMA"
+
     def __init__(self, applicant, *arguments, cdbase=None):
         self.cdbase = cdbase
         self.applicant = applicant
@@ -240,9 +277,13 @@ class Application(_OMBase):
         self.arguments = list(arguments)
         for a in self.arguments:
             a.parent = self
-    
+
     def isValid(self):
-         return self.hasValidCDBase() and self.applicant.isValid() and all(a.isValid() for a in self.arguments)
+        return (
+            self.hasValidCDBase()
+            and self.applicant.isValid()
+            and all(a.isValid() for a in self.arguments)
+        )
 
     def toElement(self):
         el = ET.Element(self.kind)
@@ -253,8 +294,10 @@ class Application(_OMBase):
             el.append(a.toElement())
         return el
 
+
 class Attribution(_OMBase):
-    kind="OMATTR"
+    kind = "OMATTR"
+
     def __init__(self, attributes, object, cdbase=None):
         self.cdbase = attributes
         self.attributes = attributes
@@ -263,9 +306,16 @@ class Attribution(_OMBase):
                 elem.parent = self
         self.object = object
         object.parent = self
-    
+
     def isValid(self):
-        return self.hasValidCDBase() and self.object.isValid() and all(isinstance(a, Symbol) and a.isValid() and b.isValid() for [a,b] in attributes) 
+        return (
+            self.hasValidCDBase()
+            and self.object.isValid()
+            and all(
+                isinstance(a, Symbol) and a.isValid() and b.isValid()
+                for [a, b] in attributes
+            )
+        )
 
     def toElement(self):
         el = ET.Element(self.kind)
@@ -278,8 +328,10 @@ class Attribution(_OMBase):
         el.append(self.object.toElement())
         return el
 
+
 class Binding(_OMBase):
-    kind="OMBIND"
+    kind = "OMBIND"
+
     def __init__(self, binder, variables, object, cdbase=None):
         self.cdbase = cdbase
         self.binder = binder
@@ -291,15 +343,17 @@ class Binding(_OMBase):
         object.parent = self
 
     def isValid(self):
-        if len(self.variables) == 0 or (self.cdbase is not None and type(self.cdbase) is not str):
+        if len(self.variables) == 0 or (
+            self.cdbase is not None and type(self.cdbase) is not str
+        ):
             return False
         for v in self.variables:
             isVariable = type(v) is Variable
             isAttributedVariable = type(v) is Attribution and type(v.object) is Variable
             if not isVariable and not isAttributedVariable:
                 return False
-        return  self.hasValidCDBase()
-    
+        return self.hasValidCDBase()
+
     def toElement(self):
         el = ET.Element(self.kind)
         if self.cdbase is not None:
@@ -310,18 +364,20 @@ class Binding(_OMBase):
             variables.append(v.toElement())
         el.append(variables)
         el.append(self.object.toElement())
-        
+
         return el
 
+
 class Error(_OMBase):
-    kind="OME"
+    kind = "OME"
+
     def __init__(self, error, arguments):
         self.error = error
         error.parent = self
         self.arguments = arguments
         for a in arguments:
             a.parent = self
-    
+
     def isValid(self):
         return type(self.error) is Symbol
 
@@ -332,44 +388,48 @@ class Error(_OMBase):
             el.append(a.toElement())
         return el
 
+
 def parse(text):
     try:
         return parseJSON(text)
     except json.JSONDecodeError:
         return parseXML(text)
 
+
 def parseJSON(text):
     return fromDict(json.loads(text))
+
 
 def parseXML(text):
     return fromElement(ET.fromstring(text))
 
+
 def fromDict(dictionary):
-    match(dictionary):
-        
+    match (dictionary):
+
         case {"kind": "OMOBJ", **kargs}:
             return Object(
-                fromDict(kargs["object"]), 
-                cdbase=kargs.get("cdbase"), 
+                fromDict(kargs["object"]),
+                cdbase=kargs.get("cdbase"),
                 version=kargs.get("version"),
-                xmlns=kargs.get("xmlns")
+                xmlns=kargs.get("xmlns"),
             )
-        
+
         case {"kind": "OMI", "integer": x, **kargs}:
             return Integer(int(x))
 
         case {"kind": "OMI", "decimal": x, **kargs}:
             return Integer(int(x))
-        
+
         case {"kind": "OMI", "hexadecimal": x, **kargs}:
             return Integer(int(x, 16))
-        
+
         case {"kind": "OMF", "integer": x, **kargs}:
             return Float(float(x))
 
         case {"kind": "OMF", "decimal": x, **kargs}:
             return Float(float(x))
-        
+
         case {"kind": "OMF", "hexadecimal": x, **kargs}:
             return Float(float(x, 16))
 
@@ -384,28 +444,32 @@ def fromDict(dictionary):
                 fromDict(kargs["applicant"]),
                 *[fromDict(a) for a in kargs.get("arguments", [])],
                 cdbase=kargs.get("cdbase")
-                )
+            )
 
         case {"kind": "OMV", **kargs}:
             return Variable(kargs["name"])
 
         case {"kind": "OMS", **kargs}:
             return Symbol(kargs["name"], kargs["cd"], cdbase=kargs.get("cdbase"))
-        
+
         case {"kind": "OMBIND", **kargs}:
             return Binding(
                 fromDict(kargs["binder"]),
                 [fromDict(v) for v in kargs["variables"]],
                 fromDict(kargs["object"]),
-                cdbase=kargs.get("cdbase")
+                cdbase=kargs.get("cdbase"),
             )
-        
-        case {"kind": "OMATTR", **kargs}:            
-            recFromDict = lambda x: fromDict(x) if type(x) is not list else [recFromDict(xx) for xx in x]
+
+        case {"kind": "OMATTR", **kargs}:
+            recFromDict = (
+                lambda x: fromDict(x)
+                if type(x) is not list
+                else [recFromDict(xx) for xx in x]
+            )
             return Attribution(
                 recFromDict(kargs["attributes"]),
-                fromDict(kargs["object"]), 
-                kargs.get("cdbase")
+                fromDict(kargs["object"]),
+                kargs.get("cdbase"),
             )
 
         case {"kind": "OME", **kargs}:
@@ -413,6 +477,7 @@ def fromDict(dictionary):
 
         case _:
             raise ValueError("A valid dictionary is required")
+
 
 def fromElement(elem):
     # handle xml namespaces
@@ -424,7 +489,7 @@ def fromElement(elem):
 
     def qname(t):
         return t if ns is None else ("{%s}%s" % (ns, t))
-    
+
     match tag:
         case "OMOBJ":
             return Object(fromElement(elem[0]), **elem.attrib)
@@ -436,15 +501,17 @@ def fromElement(elem):
                 return Integer(-int(elem.text.strip()[2:]))
             else:
                 return Integer(int(elem.text.strip()))
-        
+
         case "OMF":
             if "dec" in elem.attrib:
                 return Float(float(elem.attrib["dec"]))
             else:
                 return Float(float(elem.attrib["hex"]))
-            
+
         case "OMS":
-            return Symbol(elem.attrib["name"], elem.attrib["cd"], elem.attrib.get("cdbase"))
+            return Symbol(
+                elem.attrib["name"], elem.attrib["cd"], elem.attrib.get("cdbase")
+            )
 
         case "OMV":
             return Variable(elem.attrib["name"])
@@ -456,15 +523,19 @@ def fromElement(elem):
             raise NotImplementedError("XML encoded OpenMath Bytearrays")
 
         case "OMA":
-            return Application(fromElement(elem[0]), *[fromElement(x) for x in elem[1:]], cdbase=elem.attrib.get("cdbase"))
-        
+            return Application(
+                fromElement(elem[0]),
+                *[fromElement(x) for x in elem[1:]],
+                cdbase=elem.attrib.get("cdbase")
+            )
+
         case "OMATTR":
             obj = None
             attrs = []
             for child in elem:
                 if child.tag == "OMATP":
                     key = None
-                    for i,x in enumerate(child):
+                    for i, x in enumerate(child):
                         if i % 2 == 0 and key is not None:
                             attrs.append([fromElement(key), fromElement(x)])
                         else:
@@ -475,14 +546,13 @@ def fromElement(elem):
 
         case "OME":
             return Error(fromElement(elem[0]), [fromElement(x) for x in elem[1:]])
-        
+
         case "OMBIND":
             return Binding(
                 fromElement(elem[0]),
                 [fromElement(x) for x in elem.find(qname("OMBVAR"))],
-                fromElement(elem[2])
+                fromElement(elem[2]),
             )
 
         case _:
             raise ValueError("A valid ElementTree is required: %s" % elem)
-
