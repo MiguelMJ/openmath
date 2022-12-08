@@ -86,9 +86,11 @@ def keys(cd, cdbase=cdbase_official) -> list:
     """Get a list of entries in a CD"""
     return list(__CDs[_cdURI(cd, cdbase)]["entries"])
 
-def getEntry(oms):
+def getEntry(oms, force_load=False):
     cdbase = oms.getCDBase() or cdbase_official
     cduri = cdbase.lstrip("/") + "/" + oms.cd + ".ocd"
+    if force_load and cduri not in __CDs:
+        loadCD(oms.cd, cdbase)
     return __CDs[cduri]["entries"][oms.name]
 
 __all__ = ["loadLocalCD", "loadRemoteCD", "loadCD", "keys", "getEntry"]
