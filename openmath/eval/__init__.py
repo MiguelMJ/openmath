@@ -1,11 +1,8 @@
 import openmath.cd as CD
-import openmath.eval.arith1 as arith1
 import importlib
 
 def __evalSymbol(oms):
-    entry = CD.getEntry(oms, force_load=True)
-    if entry["role"] == "application":
-        return importlib.import_module("."+oms.cd, __package__).__dict__[oms.name]
+    return importlib.import_module("."+oms.cd, __package__).__dict__[oms.name]
 
 def eval(om):
     if om.getCDBase() not in [None, CD.cdbase_official]:
