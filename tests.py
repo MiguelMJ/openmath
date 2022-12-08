@@ -6,6 +6,8 @@ import openmath as OM
 import openmath.cd as OMCD
 import openmath.util as OMUTIL
 
+import openmath.eval as omeval
+
 omdir = Path("om")
 
 
@@ -97,15 +99,24 @@ def get_remote_cd_test():
     print(OMCD.getEntry(OM.Symbol("minus", "arith1")))
     print(OMCD.getEntry(OM.Symbol("abs", "arith1")))
 
+def eval_arith_test():
+    om = OM.Application(
+        OM.Symbol("plus", "arith1"),
+        OM.Integer(3),
+        OM.Application(
+            OM.Symbol("root", "arith1"),
+            OM.Integer(8),
+            OM.Application(
+                OM.Symbol("minus", "arith1"),
+                OM.Float(8.5),
+                OM.Float(5.5)
+            )
+        )
+    )
+    print(omeval.eval(om))
+
 def test_not_found():
     print("TEST NOT FOUND")
-
-tests = {
-    "parsing": parsing_tests,
-    "replacement": replacement_test,
-    "bound_free": bound_free_test,
-    "get_remote_cd": get_remote_cd_test,
-} 
 
 if __name__ == "__main__":
     if "all" in sys.argv:
@@ -114,5 +125,5 @@ if __name__ == "__main__":
 
     else:   
         for test in sys.argv[1:]:
-            tests.get(test, test_not_found)()
+            locals().get(test+"_test", test_not_found)()
             
