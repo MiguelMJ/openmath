@@ -4,22 +4,13 @@ import re
 
 import openmath as OM
 
-cdbase_default = "http://www.openmath.org/cd"
-CDs = {}
+cdbase_official = "http://www.openmath.org/cd"
+__CDs = {} # URI: dict
 
+def _cdURI(cd, cdbase): return cdbase.rstrip("/") + "/"+ cd + ".ocd"
 
-def getUri(oms, ocd=True):
-    cdbase = oms.getCDBase()
-    if cdbase is None:
-        cdbase = cdbase_default
-    cd = getattr(oms, "cd", None)
-    if cdbase is None or cd is None:
-        return None
-    id = "#" + getattr(oms, "name", "")
-    return cdbase.rstrip("/") + "/" + cd + (".ocd" if ocd else id)
-
-
-def buildCD(ocdxml):
+def _buildCD(ocdxml):
+    """Translate the CD from it's XML parsed structure to a dictionary"""
     # get namespace
     if ocdxml.tag[0] == "{":
         [ns, _] = ocdxml.tag[1:].split("}")
@@ -42,24 +33,62 @@ def buildCD(ocdxml):
             }
         elif tag[0:2] == "CD":
             cd["meta"][tag[2:]] = child.text
+        else:
+            cd["meta"][tag] = child.text
     return cd
 
+def loadLocalCD(cds, cdbase="./") -> bool:
+    """Load a Content Dictionary from a local file
+    
+    Return True if it was successfully loaded
+    """
+    if type(cds) is str:
+        cds = [cds]
+    for cd in cds:
+        filepath = _cdURI(cd, cdbase)
+        if filepath not in __CDs:
+            with open(filepath) as fh:
+                text = fh.read()
+            ocdxml = ET.fromstring(text)
+            __CDs[ocd_uri] = _buildCD(ocdxml)
+    return True
 
-def getDictionary(arg1):
-    if isinstance(arg1, OM.Symbol):
-        ocd_uri = re.sub("#.*$", "", getUri(arg1))
-    else:
-        ocd_uri = arg1
+def loadRemoteCD(cds, cdbase=cdbase_official) -> bool:
+    """Load a Content Dictionary from a remote file
+    
+    Return True if it was successfully loaded
+    """
+    if type(cds) is str:
+        cds = [cds]
+    for cd in cds:
+        ocd_uri = _cdURI(cd, cdbase)
+        if ocd_uri not in __CDs:
+            response = requests.get(ocd_uri)
+            text = response.text
+            if not response:
+                return False, response
+            ocdxml = ET.fromstring(text)
+            __CDs[ocd_uri] = _buildCD(ocdxml)
+    return True
 
-    if ocd_uri not in CDs:
-        ocdtext = requests.get(ocd_uri).text
-        ocdxml = ET.fromstring(ocdtext)
-        CDs[ocd_uri] = buildCD(ocdxml)
+def loadCD(cd, cdbase=cdbase_official) -> bool:
+    """Load a Content Dictionary
 
-    return CDs[ocd_uri]
+    Attempt to distinguish local and remote __CDs.
 
+    Return True if it was successfully load
+    """
+    if cdbase.startswith("http"):
+        return loadRemoteCD(cd, cdbase)
+    return loadLocalCD(cd, cdbase)
 
-def help(oms):
-    cd = getDictionary(getUri(oms, ocd=True))
-    entry = cd["entries"][oms.name]
-    return (entry["role"], entry["desc"])
+def keys(cd, cdbase=cdbase_official) -> list:
+    """Get a list of entries in a CD"""
+    return list(__CDs[_cdURI(cd, cdbase)]["entries"])
+
+def getEntry(oms):
+    cdbase = oms.getCDBase() or cdbase_official
+    cduri = cdbase.lstrip("/") + "/" + oms.cd + ".ocd"
+    return __CDs[cduri]["entries"][oms.name]
+
+__all__ = ["loadLocalCD", "loadRemoteCD", "loadCD", "keys", "getEntry"]

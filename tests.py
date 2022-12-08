@@ -1,9 +1,10 @@
 import os
+import sys
 from pathlib import Path
 
 import openmath as OM
-import openmathcd as OMCD
-import openmathutil as OMUTIL
+import openmath.cd as OMCD
+import openmath.util as OMUTIL
 
 omdir = Path("om")
 
@@ -53,17 +54,6 @@ def parsing_tests():
         except NotImplementedError as err:
             print("SKIP", err)
 
-
-def get_cd_test():
-    om = OM.parse(load_om("sin_0.om"))
-    eq_om = om.object.applicant
-    print(OMCD.getUri(eq_om, ocd=False))
-    print(OMCD.getUri(eq_om))
-    # d = OMCD.getDictionary(eq_om)
-    print(OMCD.help(eq_om))
-    print(OMCD.help(OM.Symbol("plus", "arith1")))
-
-
 def replacement_test():
     om = OM.parse(load_om("abs_0.om"))
     var_x = OM.Variable("x")
@@ -87,7 +77,6 @@ def replacement_test():
     # print(om.toXML(indent=2))
     print(OMUTIL.visualize(om))
 
-
 def bound_free_test():
 
     om = OM.Binding(
@@ -102,9 +91,28 @@ def bound_free_test():
         print(OMUTIL.visualize(om))
         print(OMUTIL.getVars(om))
 
+def get_remote_cd_test():
+    OMCD.loadRemoteCD("arith1")
+    print(OMCD.keys("arith1"))
+    print(OMCD.getEntry(OM.Symbol("minus", "arith1")))
+    print(OMCD.getEntry(OM.Symbol("abs", "arith1")))
+
+def test_not_found():
+    print("TEST NOT FOUND")
+
+tests = {
+    "parsing": parsing_tests,
+    "replacement": replacement_test,
+    "bound_free": bound_free_test,
+    "get_remote_cd": get_remote_cd_test,
+} 
 
 if __name__ == "__main__":
-    parsing_tests()
-    get_cd_test()
-    replacement_test()
-    bound_free_test()
+    if "all" in sys.argv:
+        for test in tests.keys():
+            tests[test]()
+
+    else:   
+        for test in sys.argv[1:]:
+            tests.get(test, test_not_found)()
+            
