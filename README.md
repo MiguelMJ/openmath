@@ -87,7 +87,7 @@ Only official dictionaries will be supported for now.
 | [fns2](http://www.openmath.org/cd/fns2) | :x: | :x: |
 | [integer1](http://www.openmath.org/cd/integer1) | :heavy_check_mark: | :heavy_check_mark: |
 | [interval1](http://www.openmath.org/cd/interval1) | :heavy_check_mark: | :heavy_check_mark: |
-| [limit1](http://www.openmath.org/cd/limit1) | :x: | :x: |
+| [limit1](http://www.openmath.org/cd/limit1) | :heavy_check_mark: | :heavy_check_mark: |
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
 | [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
 | [list1](http://www.openmath.org/cd/list1) | :x: | :x: |
