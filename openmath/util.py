@@ -1,6 +1,13 @@
 import openmath as OM
+import math
 
 def asOM(x):
+    if x == math.inf:
+        return OM.Symbol("infinity", "nums1")
+    if x == -math.inf:
+        return OM.Application(OM.Symbol("unary_minus", "arith1"), OM.Symbol("infinity", "nums1"))
+    if x is math.nan:
+        return OM.Symbol("NaN", "nums1")
     if type(x) is int:
         return OM.Integer(x)
     if type(x) is float:
