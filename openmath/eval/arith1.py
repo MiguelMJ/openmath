@@ -1,3 +1,4 @@
+"""https://openmath.org/cd/arith1.html"""
 from functools import reduce
 import math
 
