@@ -68,7 +68,7 @@ Only official dictionaries will be supported for now.
 
 | CD | `eval`| `latex` & `mathml` |
 |---:|:---:|:---:|
-| [alg1](http://www.openmath.org/cd/alg1) | :x: | :x: |
+| [alg1](http://www.openmath.org/cd/alg1) | :heavy_check_mark: | :heavy_check_mark: |
 | [altenc](http://www.openmath.org/cd/altenc) | :x: | :x: |
 | [arith1](http://www.openmath.org/cd/arith1) | :heavy_check_mark: | :heavy_check_mark: |
 | [bigfloat1](http://www.openmath.org/cd/bigfloat1) | :x: | :x: |
@@ -77,8 +77,8 @@ Only official dictionaries will be supported for now.
 | [error](http://www.openmath.org/cd/error) | :x: | :x: |
 | [fns1](http://www.openmath.org/cd/fns1) | :construction: | :x: |
 | [fns2](http://www.openmath.org/cd/fns2) | :x: | :x: |
-| [integer1](http://www.openmath.org/cd/integer1) | :x: | :x: |
-| [interval1](http://www.openmath.org/cd/interval1) | :x: | :heavy_check_mark: |
+| [integer1](http://www.openmath.org/cd/integer1) | :heavy_check_mark: | :heavy_check_mark: |
+| [interval1](http://www.openmath.org/cd/interval1) | :heavy_check_mark: | :x: |
 | [limit1](http://www.openmath.org/cd/limit1) | :x: | :x: |
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
 | [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
