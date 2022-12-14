@@ -21,4 +21,6 @@ def eval(om):
         return __evalSymbol(om)
     if om.kind == "OMA":
         return eval(om.applicant)(*[eval(arg) for arg in om.arguments])
+    if om.kind == "OMBIND":
+        return eval(om.binder)(om.variables, om.object)
             

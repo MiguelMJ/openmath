@@ -41,6 +41,8 @@ def __evalApplication(oma):
         
         case fun:
             if callable(fun):
+                if "special" in moduledict and oma.applicant.name in moduledict["special"]:
+                    return fun(*oma.arguments)
                 return fun(*[eval(x) for x in oma.arguments])
             else:
                 raise NotImplementedError(oma)
@@ -58,6 +60,8 @@ def eval(om):
         return eval(om.object)
     if om.kind == "OMI":
         return str(om.integer)
+    if om.kind == "OMV":
+        return str(om.name)
     if om.kind == "OMF":
         return str(om.float)
     if om.kind == "OMSTR":
