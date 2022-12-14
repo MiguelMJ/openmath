@@ -4,17 +4,11 @@ import math
 
 def lcm(*args):
     """http://www.openmath.org/cd/arith1#lcm"""
-    x = max(args)
-    while not all(x % a == 0 for a in args):
-        x += 1
-    return x
+    return math.lcm(*args)
 
-def gcm(*args):
-    """http://www.openmath.org/cd/arith1#gcm"""
-    x = min(args)
-    while not all(a % x == 0 for a in args):
-        x -= 1
-    return x
+def gcd(*args):
+    """http://www.openmath.org/cd/arith1#gcd"""
+    return math.gcd(*args)
 
 def plus(*args):
     """http://www.openmath.org/cd/arith1#plus"""
