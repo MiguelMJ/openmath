@@ -1,9 +1,9 @@
 
 <h1 align="center">OpenMath for Python</h1>
-<h3 align="center">Unofficial implementation of the OpenMath standard</h3>
+<h3 align="center implementation of the OpenMath standard</h3>
 <p align="center">
 <img src="https://img.shields.io/badge/python-3.10-306998?style=for-the-badge&logo=python&logoColor=ffdc51">
-<a href="https://www.openmath.org"><img src="https://img.shields.io/badge/OpenMath-v2.0-5b78fd?style=for-the-badge"></a>
+<a href="https://www.openmath.org"><img src="https://img.shields.io/badge/OpenMath-2.0-5b78fd?style=for-the-badge"></a>
 <!--img src="https://img.shields.io/badge/version-v1.0-informational?style=for-the-badge"/-->
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational?style=for-the-badge"/></a>
 </p>
@@ -15,7 +15,7 @@ This package provides the classes and functions necessary to work with _most_ of
 - Implementation of the OpenMath objects with a minimal interface for their manipulation.
 - De/serialization from/to JSON and XML.
 - Intuitive access to remote Content Dictionaries, directly from the OpenMath objects.
-- Utility functions for more complex operations.
+- Submodules for more complex operations like evaluation or representation.
 
 ### What is not implemented
 
@@ -31,127 +31,81 @@ This list is empty right now.
 
 ## Contributing
 
-- 
+- Read the [CONTRIBUTING](CONTRIBUTING.md) file if you want to contribute to the code.
+- Open a new issue [![issues](https://img.shields.io/github/issues/MiguelMJ/openmath?logo=github&style=social)](https://github.com/MiguelMJ/openmath/issues/new) to make a request or report a bug.
+- Add more tests, examples, use cases, documentation, etc for the library.
+- And of course, :star: **star this repository** and give it some visibility [![stargazers](https://img.shields.io/github/stars/MiguelMJ/openmath?logo=github&style=social)](https://github.com/MiguelMJ/openmath/stargazers).
 
-## Example
+## Modules
 
-```python
-import openmath as OM
-import openmath.cd
-from openmath.util import replace
+### `openmath`
 
-# this mathematical object is: 3*x + 1
-obj = OM.Object(
-    OM.Application(
-        OM.Symbol("plus", "arith1"),
-        OM.Application(
-            OM.Symbol("product", "arith1"),
-            OM.Integer(3),
-            OM.Variable("x")
-        ),
-        OM.Integer(1)
-    ),
-    cdbase="http://www.openmath.org/cd"
-)
-# try the encoding
-inXML = obj.toXML(indent=2)
-print(inXML)
-print(obj == OM.parse(inXML))
+The main module provides the implementation of the standard, properly. This means: the classes for OpenMath objects and the de/serializing functions. The submodules, on the other hand, provide a richer set of functions to work with these objects.
 
-inJSON = obj.toJSON(indent=2)
-print(inJSON)
-print(obj == OM.parse(inJSON))
+### `openmath.cd`
 
-# make some changes
-# directly on the object
-minus = OM.Symbol("minus", "arith1")
-obj.object.applicant = minus
+Allows the user to load Content Dictionaries, both local and remote, and access their information.
 
-# or via the utilities
-replace(obj, OM.Variable("x"), OM.Float(1.5))
+### `openmath.config`
 
-print(obj.toXML(indent=2))
+Controls the user configuration for the following submodules.
 
-# get some information about the symbols
-print(OM.cd.help(minus))
-```
+### `openmath.eval`
 
-<details>
+Provides a function to evaluate application mathematical objects into a single value.
 
-<summary>
-Click here to see the output
-</summary>
+### `openmath.latex`
 
-```
-<?xml version="1.0" ?>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS name="plus" cd="arith1"/>
-    <OMA>
-      <OMS name="product" cd="arith1"/>
-      <OMI>3</OMI>
-      <OMV name="x"/>
-    </OMA>
-    <OMI>1</OMI>
-  </OMA>
-</OMOBJ>
+Provides a function to convert mathematical objects into LaTex.
 
-True
-{
-  "kind": "OMOBJ",
-  "cdbase": "http://www.openmath.org/cd",
-  "object": {
-    "kind": "OMA",
-    "applicant": {
-      "kind": "OMS",
-      "cd": "arith1",
-      "name": "plus"
-    },
-    "arguments": [
-      {
-        "kind": "OMA",
-        "applicant": {
-          "kind": "OMS",
-          "cd": "arith1",
-          "name": "product"
-        },
-        "arguments": [
-          {
-            "kind": "OMI",
-            "integer": 3
-          },
-          {
-            "kind": "OMV",
-            "name": "x"
-          }
-        ]
-      },
-      {
-        "kind": "OMI",
-        "integer": 1
-      }
-    ]
-  }
-}
-True
-<?xml version="1.0" ?>
-<OMOBJ xmlns="http://www.openmath.org/OpenMath" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS name="minus" cd="arith1"/>
-    <OMA>
-      <OMS name="product" cd="arith1"/>
-      <OMI>3</OMI>
-      <OMF>1.5</OMF>
-    </OMA>
-    <OMI>1</OMI>
-  </OMA>
-</OMOBJ>
+### `openmath.mathml`
 
-('application', 'The symbol representing a binary minus function. This is equivalent to\nadding the additive inverse.')
+Wraps the `openmath.latex` module and converts its LaTex output into MathML using [latex2mathml](https://github.com/roniemartinez/latex2mathml).
 
-```
+### Content Dictionaries support
 
-</details>
+Only official dictionaries will be supported for now.
+
+| CD | `eval`| `latex` & `mathml` |
+|---:|:---:|:---:|
+| alg1 | :x: | :x: |
+| altenc | :x: | :x: |
+| arith1 | :heavy_check_mark: | :heavy_check_mark: |
+| bigfloat1 | :x: | :x: |
+| calculus1 | :x: | :x: |
+| complex1 | :x: | :x: |
+| error | :x: | :x: |
+| fns1 | :x: | :x: |
+| fns2 | :x: | :x: |
+| integer1 | :x: | :x: |
+| interval1 | :x: | :heavy_check_mark: |
+| limit1 | :x: | :x: |
+| linalg1 | :x: | :x: |
+| linalg2 | :x: | :x: |
+| list1 | :x: | :x: |
+| list1 | :x: | :x: |
+| logic1 | :x: | :x: |
+| mathmlattr | :x: | :x: |
+| mathmltypes | :x: | :x: |
+| meta | :x: | :x: |
+| metagrp | :x: | :x: |
+| metasig | :x: | :x: |
+| minmax1 | :x: | :x: |
+| multiset1 | :x: | :x: |
+| nums1 | :x: | :x: |
+| piece1 | :x: | :x: |
+| quant1 | :x: | :x: |
+| relation1 | :x: | :x: |
+| relation3 | :x: | :x: |
+| rounding1 | :x: | :x: |
+| s_data1 | :x: | :x: |
+| s_dist1 | :x: | :x: |
+| set1 | :x: | :x: |
+| setname1 | :x: | :x: |
+| sts | :x: | :x: |
+| transc1 | :x: | :x: |
+| veccalc1 | :x: | :x: |
+| list1 | :x: | :x: |
 
 ## License
 
