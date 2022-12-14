@@ -1,5 +1,9 @@
 import openmath.cd as CD
+import openmath.config
 import importlib
+
+openmath.config.addKeyVal("SIMPLIFY_FLOAT", ["YES", "NO"], "YES")
+
 
 def __hasPriorityOver(oms1, oms2):
     if oms1.cd != oms2.cd:
@@ -63,6 +67,8 @@ def eval(om):
     if om.kind == "OMV":
         return str(om.name)
     if om.kind == "OMF":
+        if openmath.config.get("SIMPLIFY_FLOAT").upper() == "YES":
+            return str(om.float).rstrip(".0")
         return str(om.float)
     if om.kind == "OMSTR":
         return '"'+om.string+'"'
