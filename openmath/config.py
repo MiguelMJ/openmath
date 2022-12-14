@@ -32,7 +32,6 @@ def parseFromArgs(argv):
         k = k.upper()
         v = v.upper()
         config[k] = v
-        print(k,"=",v)
 
 def get(key):
     return config[key.upper()]
