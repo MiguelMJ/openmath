@@ -1,15 +1,45 @@
-lcm=("lcm", "application")
-gcm=("gcm", "application")
-plus=("+", "infix")
-unary_minus=("-", "prefix")
-minus=("-", "infix")
-times=("\\times", "infix")
+import openmath.config
+from openmath import Symbol
+
+openmath.config.addKeyVal("DIVIDE_AS_FRACTION", ["YES", "NO"], "YES")
+openmath.config.addKeyVal("HIDE_SQRT", ["YES", "NO"], "YES")
+
+priority = [
+    Symbol("unary_minus", "arith1"),    
+    Symbol("power", "arith1"),    
+    Symbol("divide", "arith1"),    
+    Symbol("times", "arith1"),    
+    Symbol("minus", "arith1"),    
+    Symbol("plus", "arith1"),    
+]
+
+lcm = ("lcm", "call")
+
+gcm = ("gcm", "call")
+
+plus = ("+", "infix")
+
+unary_minus = ("-", "prefix")
+
+minus = ("-", "infix")
+
+times  = ("\\times", "infix")
+
 def divide(a,b):
-    return "\\frac{%s}{%s}" % (a,b)
+    if openmath.config.get("DIVIDE_AS_FRACTION") == "YES":
+        return "\\frac{%s}{%s}" % (a,b)
+    return "%s / %s" % (a,b)
+
 def power(a,b):
     return "%s^{%s}" % (a,b)
-abs=("abs", "application")
+
+abs = ("abs", "call")
+
 def root(a,b):
+    if b == 2 and openmath.config.get("HIDE_SQRT") == "YES":
+        return "\\sqrt{%s}" % a
     return "\\sqrt[%s]{%s}" % (b,a)
-#sum
-#product
+
+# sum
+
+# product
