@@ -100,7 +100,7 @@ Only official dictionaries will be supported for now.
 | [metasig](http://www.openmath.org/cd/metasig) | :x: | :x: |
 | [minmax1](http://www.openmath.org/cd/minmax1) | :x: | :x: |
 | [multiset1](http://www.openmath.org/cd/multiset1) | :x: | :x: |
-| [nums1](http://www.openmath.org/cd/nums1) | :x: | :x: |
+| [nums1](http://www.openmath.org/cd/nums1) | :construction: | :heavy_check_mark: |
 | [piece1](http://www.openmath.org/cd/piece1) | :x: | :x: |
 | [quant1](http://www.openmath.org/cd/quant1) | :x: | :x: |
 | [relation1](http://www.openmath.org/cd/relation1) | :x: | :x: |
