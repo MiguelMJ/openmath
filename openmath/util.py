@@ -1,6 +1,14 @@
 import openmath as OM
 
-
+def asOM(x):
+    if type(x) is int:
+        return OM.Integer(x)
+    if type(x) is float:
+        return OM.Float(x)
+    if type(x) is str:
+        return OM.String(x)
+    raise NotImplementedError("asOM " + str(x))
+    
 def visualize(om):
     assert isinstance(om, OM._OMBase) or type(om) is list
     if type(om) is list:

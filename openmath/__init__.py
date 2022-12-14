@@ -110,6 +110,9 @@ class _OMBase:
             return self.parent.getCDBase()
         return self.cdbase
 
+    def clone(self):
+        return deepcopy(self)
+
     def replace(self, obj1, obj2) -> None:
         """Replace the instances of an object with another one
 
@@ -120,19 +123,19 @@ class _OMBase:
         d = self.__dict__
         for k in d:
             if obj1 is d[k]:
-                d[k] = deepcopy(obj2)
+                d[k] = obj2.clone()
                 d[k].parent = self
             elif type(d[k]) is list and not (
                 k == "variables" and self.kind == "OMBIND"
             ):
                 for i, elem in enumerate(d[k]):
                     if obj1 is elem:
-                        d[k][i] = deepcopy(obj2)
+                        d[k][i] = obj2.clone()
                         d[k][i].parent = self
                     elif type(elem) is list:
                         for j, subelem in enumerate(elem):
                             if subelem is obj1:
-                                elem[j] = deepcopy(obj2)
+                                elem[j] = obj2.clone()
                                 elem[j].parent = self
 
     def __eq__(self, other) -> bool:
