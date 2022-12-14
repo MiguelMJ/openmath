@@ -68,7 +68,7 @@ def eval(om):
         return str(om.name)
     if om.kind == "OMF":
         if openmath.config.get("SIMPLIFY_FLOAT").upper() == "YES":
-            return str(om.float).rstrip(".0")
+            return str(om.float).rstrip("0").rstrip(".")
         return str(om.float)
     if om.kind == "OMSTR":
         return '"'+om.string+'"'
