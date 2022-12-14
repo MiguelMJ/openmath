@@ -66,6 +66,14 @@ Wraps the `openmath.latex` module and converts its LaTex output into MathML usin
 
 Only official dictionaries will be supported for now.
 
+|||
+|---|---|
+| :heavy_check_mark: | Supported |
+| :x: | Not supported |
+| :construction: | Partially supported |
+
+#### Official
+
 | CD | `eval`| `latex` & `mathml` |
 |---:|:---:|:---:|
 | [alg1](http://www.openmath.org/cd/alg1) | :heavy_check_mark: | :heavy_check_mark: |
@@ -78,7 +86,7 @@ Only official dictionaries will be supported for now.
 | [fns1](http://www.openmath.org/cd/fns1) | :construction: | :x: |
 | [fns2](http://www.openmath.org/cd/fns2) | :x: | :x: |
 | [integer1](http://www.openmath.org/cd/integer1) | :heavy_check_mark: | :heavy_check_mark: |
-| [interval1](http://www.openmath.org/cd/interval1) | :heavy_check_mark: | :x: |
+| [interval1](http://www.openmath.org/cd/interval1) | :heavy_check_mark: | :heavy_check_mark: |
 | [limit1](http://www.openmath.org/cd/limit1) | :x: | :x: |
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
 | [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
