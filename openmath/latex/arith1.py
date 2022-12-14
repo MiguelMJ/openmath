@@ -1,5 +1,6 @@
 import openmath.config
 from openmath import Symbol
+from openmath.latex import eval
 
 openmath.config.addKeyVal("DIVIDE_AS_FRACTION", ["YES", "NO"], "YES")
 openmath.config.addKeyVal("HIDE_SQRT", ["YES", "NO"], "YES")
@@ -40,6 +41,14 @@ def root(a,b):
         return "\\sqrt{%s}" % a
     return "\\sqrt[%s]{%s}" % (b,a)
 
-# sum
+def sum(a,b):
+    "http://www.openmath.org/cd/arith1#sum"
+    return "\\sum_{%s=%s}^{%s} %s" % (eval(b.variables[0]),eval(a.arguments[0]), eval(a.arguments[1]), eval(b.object))
 
-# product
+def product(a,b):
+    return "\\prod_{%s=%s}^{%s} %s" % (eval(b.variables[0]),eval(a.arguments[0]), eval(a.arguments[1]), eval(b.object))
+
+special = [
+    "sum",
+    "product"
+]

@@ -50,7 +50,7 @@ def root(a,b):
 
 def sum(a,b):
     """http://www.openmath.org/cd/arith1#sum"""
-    return reduce(lambda v1,v2:v1+v2, (b(v) for v in a), 0)
+    return reduce(lambda v1,v2: v1+v2, (b(v) for v in a), 0)
 
 def product(a,b):
     """http://www.openmath.org/cd/arith1#product"""

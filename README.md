@@ -75,7 +75,7 @@ Only official dictionaries will be supported for now.
 | [calculus1](http://www.openmath.org/cd/calculus1) | :x: | :x: |
 | [complex1](http://www.openmath.org/cd/complex1) | :x: | :x: |
 | [error](http://www.openmath.org/cd/error) | :x: | :x: |
-| [fns1](http://www.openmath.org/cd/fns1) | :x: | :x: |
+| [fns1](http://www.openmath.org/cd/fns1) | :construction: | :x: |
 | [fns2](http://www.openmath.org/cd/fns2) | :x: | :x: |
 | [integer1](http://www.openmath.org/cd/integer1) | :x: | :x: |
 | [interval1](http://www.openmath.org/cd/interval1) | :x: | :heavy_check_mark: |
