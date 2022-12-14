@@ -23,7 +23,7 @@ def addKeyVal(key, vals, default):
     if key not in config:
         config[key] = default
     elif config[key] not in vals:
-        raise RuntimeError(f'{v} is not a valid value for {k}')
+        raise RuntimeError(f'{config[key]} is not a valid value for {key}')
     
 def parseFromArgs(argv):
     """Set the configuration values from a list of arguments"""
@@ -34,4 +34,5 @@ def parseFromArgs(argv):
         config[k] = v
 
 def get(key):
-    return config[key.upper()]
+    """Safely get a configuration value"""
+    return config.get(key.upper(), None)
