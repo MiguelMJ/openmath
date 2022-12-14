@@ -1,6 +1,6 @@
 
 <h1 align="center">OpenMath for Python</h1>
-<h3 align="center"> implementation of the OpenMath standard</h3>
+<h3 align="center">Unofficial implementation of the OpenMath standard</h3>
 <p align="center">
 <img src="https://img.shields.io/badge/python-3.10-306998?style=for-the-badge&logo=python&logoColor=ffdc51">
 <a href="https://www.openmath.org"><img src="https://img.shields.io/badge/OpenMath-2.0-5b78fd?style=for-the-badge"></a>
