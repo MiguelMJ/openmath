@@ -102,7 +102,7 @@ Only official dictionaries will be supported for now.
 | [nums1](http://www.openmath.org/cd/nums1) | :construction: | :heavy_check_mark: |
 | [piece1](http://www.openmath.org/cd/piece1) | :x: | :x: |
 | [quant1](http://www.openmath.org/cd/quant1) | :x: | :x: |
-| [relation1](http://www.openmath.org/cd/relation1) | :x: | :x: |
+| [relation1](http://www.openmath.org/cd/relation1) | :heavy_check_mark: | :heavy_check_mark: |
 | [relation3](http://www.openmath.org/cd/relation3) | :x: | :x: |
 | [rounding1](http://www.openmath.org/cd/rounding1) | :x: | :x: |
 | [s_data1](http://www.openmath.org/cd/s_data1) | :x: | :x: |
