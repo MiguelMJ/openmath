@@ -20,8 +20,7 @@ gcm = ("gcm", "call")
 
 plus = ("+", "infix")
 
-def unary_minus(x): 
-    return "- "+x
+unary_minus = ("-", "prefix")
 
 minus = ("-", "infix")
 

@@ -43,13 +43,19 @@ def __evalApplication(oma):
         case (sym, "infix"):
             return f" {sym} ".join(evalAndEnclose(x, oma.applicant) for x in oma.arguments)
         
+        case (sym, "prefix"):
+            return f"{sym} " + " ".join(evalAndEnclose(x, oma.applicant) for x in oma.arguments)
+        
+        case None:
+            raise NotImplementedError(oma.applicant.name+" (None)")
+
         case fun:
             if callable(fun):
                 if "special" in moduledict and oma.applicant.name in moduledict["special"]:
                     return fun(*oma.arguments)
                 return fun(*[eval(x) for x in oma.arguments])
             else:
-                raise NotImplementedError(oma)
+                raise NotImplementedError(oma.applicant.name)
  
 def evalAndEnclose(om, parentSym):
     rep = eval(om)
