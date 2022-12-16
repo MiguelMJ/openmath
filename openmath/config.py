@@ -14,7 +14,7 @@ def addKeyVal(key, vals, default):
     """
 
     key = key.upper()
-    vals = [val.upper() for val in vals]
+    vals = [val.upper() for val in vals] if vals is not None else None
     default = default.upper()
     
     if vals is not None and default not in vals:
@@ -22,7 +22,7 @@ def addKeyVal(key, vals, default):
 
     if key not in config:
         config[key] = default
-    elif config[key] not in vals:
+    elif vals is not None and config[key] not in vals:
         raise RuntimeError(f'{config[key]} is not a valid value for {key}')
     
 def parseFromArgs(argv):
