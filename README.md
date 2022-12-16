@@ -91,7 +91,6 @@ Only official dictionaries will be supported for now.
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
 | [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
 | [list1](http://www.openmath.org/cd/list1) | :x: | :x: |
-| [list1](http://www.openmath.org/cd/list1) | :x: | :x: |
 | [logic1](http://www.openmath.org/cd/logic1) | :x: | :x: |
 | [mathmlattr](http://www.openmath.org/cd/mathmlattr) | :x: | :x: |
 | [mathmltypes](http://www.openmath.org/cd/mathmltypes) | :x: | :x: |
@@ -108,7 +107,7 @@ Only official dictionaries will be supported for now.
 | [rounding1](http://www.openmath.org/cd/rounding1) | :x: | :x: |
 | [s_data1](http://www.openmath.org/cd/s_data1) | :x: | :x: |
 | [s_dist1](http://www.openmath.org/cd/s_dist1) | :x: | :x: |
-| [set1](http://www.openmath.org/cd/set1) | :x: | :x: |
+| [set1](http://www.openmath.org/cd/set1) | :heavy_check_mark: | :heavy_check_mark: |
 | [setname1](http://www.openmath.org/cd/setname1) | :x: | :x: |
 | [sts](http://www.openmath.org/cd/sts) | :x: | :x: |
 | [transc1](http://www.openmath.org/cd/transc1) | :x: | :x: |
