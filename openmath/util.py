@@ -12,6 +12,8 @@ def asOM(x):
         return OM.Integer(x)
     if type(x) is float:
         return OM.Float(x)
+    if type(x) is complex:
+        return OM.Application(OM.Symbol("cartesian_complex", "complex1"), asOM(x.real), asOM(x.imag))
     if type(x) is str:
         return OM.String(x)
     raise NotImplementedError("asOM " + str(x))

@@ -81,7 +81,7 @@ Only official dictionaries will be supported for now.
 | [arith1](http://www.openmath.org/cd/arith1) | :heavy_check_mark: | :heavy_check_mark: |
 | [bigfloat1](http://www.openmath.org/cd/bigfloat1) | :x: | :x: |
 | [calculus1](http://www.openmath.org/cd/calculus1) | :x: | :x: |
-| [complex1](http://www.openmath.org/cd/complex1) | :x: | :x: |
+| [complex1](http://www.openmath.org/cd/complex1) | :heavy_check_mark: | :heavy_check_mark: |
 | [error](http://www.openmath.org/cd/error) | :x: | :x: |
 | [fns1](http://www.openmath.org/cd/fns1) | :construction: | :x: |
 | [fns2](http://www.openmath.org/cd/fns2) | :x: | :x: |
