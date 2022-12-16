@@ -91,7 +91,7 @@ Only official dictionaries will be supported for now.
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
 | [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
 | [list1](http://www.openmath.org/cd/list1) | :x: | :x: |
-| [logic1](http://www.openmath.org/cd/logic1) | :x: | :x: |
+| [logic1](http://www.openmath.org/cd/logic1) | :construction: | :heavy_check_mark: |
 | [mathmlattr](http://www.openmath.org/cd/mathmlattr) | :x: | :x: |
 | [mathmltypes](http://www.openmath.org/cd/mathmltypes) | :x: | :x: |
 | [meta](http://www.openmath.org/cd/meta) | :x: | :x: |
