@@ -13,9 +13,15 @@ def asOM(x):
     if type(x) is float:
         return OM.Float(x)
     if type(x) is complex:
-        return OM.Application(OM.Symbol("cartesian_complex", "complex1"), asOM(x.real), asOM(x.imag))
+        return OM.Application(OM.Symbol("complex_cartesian", "complex1"), asOM(x.real), asOM(x.imag))
     if type(x) is str:
         return OM.String(x)
+    if type(x) is set:
+        return OM.Application(OM.Symbol("set", "set1"), *[asOM(a) for a in x])
+    if type(x) is list:
+        return OM.Application(OM.Symbol("list", "list1"), *[asOM(a) for a in x])
+    if type(x) is bool:
+        return OM.Symbol("true", "logic1") if x else OM.Symbol("false", "logic1")
     raise NotImplementedError("asOM " + str(x))
     
 def visualize(om):

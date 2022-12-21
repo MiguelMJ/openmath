@@ -23,4 +23,4 @@ def eval(om):
         return eval(om.applicant)(*[eval(arg) for arg in om.arguments])
     if om.kind == "OMBIND":
         return eval(om.binder)(om.variables, om.object)
-            
+
