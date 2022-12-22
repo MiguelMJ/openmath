@@ -89,7 +89,7 @@ Only official dictionaries will be supported for now.
 | [interval1](http://www.openmath.org/cd/interval1) | :heavy_check_mark: | :heavy_check_mark: |
 | [limit1](http://www.openmath.org/cd/limit1) | :heavy_check_mark: | :heavy_check_mark: |
 | [linalg1](http://www.openmath.org/cd/linalg1) | :x: | :x: |
-| [linalg2](http://www.openmath.org/cd/linalg2) | :x: | :x: |
+| [linalg2](http://www.openmath.org/cd/linalg2) | :heavy_check_mark: | :heavy_check_mark: |
 | [list1](http://www.openmath.org/cd/list1) | :heavy_check_mark: | :heavy_check_mark: |
 | [logic1](http://www.openmath.org/cd/logic1) | :construction: | :heavy_check_mark: |
 | [mathmlattr](http://www.openmath.org/cd/mathmlattr) | :x: | :x: |
