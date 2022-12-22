@@ -4,22 +4,38 @@ import math
 def asOM(x):
     if x == math.inf:
         return OM.Symbol("infinity", "nums1")
+    
     if x == -math.inf:
         return OM.Application(OM.Symbol("unary_minus", "arith1"), OM.Symbol("infinity", "nums1"))
+    
     if x is math.nan:
         return OM.Symbol("NaN", "nums1")
+    
     if type(x) is int:
         return OM.Integer(x)
+    
     if type(x) is float:
         return OM.Float(x)
+    
     if type(x) is complex:
         return OM.Application(OM.Symbol("complex_cartesian", "complex1"), asOM(x.real), asOM(x.imag))
+    
     if type(x) is str:
         return OM.String(x)
+    
     if type(x) is set:
         return OM.Application(OM.Symbol("set", "set1"), *[asOM(a) for a in x])
-    if type(x) is list:
+    
+    if type(x) is tuple:
         return OM.Application(OM.Symbol("list", "list1"), *[asOM(a) for a in x])
+    
+    if type(x) is list:
+
+        if(len(x) > 0 and type(x[0]) is tuple):
+            return OM.Application(OM.Symbol("matrix", "linalg2"), *[OM.Application(OM.Symbol("matrixrow", "linalg2"), *[asOM(a) for a in r]) for r in x])
+        
+        return OM.Application(OM.Symbol("list", "list1"), *[asOM(a) for a in x])
+    
     if type(x) is bool:
         return OM.Symbol("true", "logic1") if x else OM.Symbol("false", "logic1")
     raise NotImplementedError("asOM " + str(x))
